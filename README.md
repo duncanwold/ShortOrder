@@ -2,15 +2,11 @@
 
 **The 8ms Guitar Synthesizer**, by Yacht Pockets.
 
-*Your tone in 15 ms or less, or your money back.\**
-
 ## Author's note
 
 Thank you for checking out my guitar synthesizer plugin, ShortOrder. I love guitar synthesizer pedals (the Electro-Harmonix Synth 9 pedal is currently in my main signal chain) but have always found them a bit hard to work with due to the latency at the low end. So I built ShortOrder to be very fast, and very playable. You start by setting your latency, with the tradeoff of losing some of the lower notes on your neck. Octaves and harmonizers get a big, full, and low sound back.
 
 I hope you enjoy playing with ShortOrder as much as I enjoyed building it. Please [reach out](../../issues) and let me know what you think!
-
-<sub>\*At the default setting. Detection latency, from the pick; your audio interface adds its own. ShortOrder is a free plug-in.</sub>
 
 ![ShortOrder](images/shortorder.png)
 
