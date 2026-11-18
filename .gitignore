@@ -1,0 +1,6 @@
+build/
+build-release/
+build-release.log
+dist/
+signing.env
+.DS_Store

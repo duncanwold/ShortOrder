@@ -1,0 +1,4485 @@
+{
+  "about": "ShortOrder RC1 golden renders: the engine's output on the dry takes in Recordings/Release Candidate Recordings/ (channel 1), SHA-256 of the float32 output buffer (little-endian). GTTTests --golden compares; renders in Tests/golden/renders/ (local).",
+  "engine": "v0.6.2: fixes 1, 2 and 4 (the bottom edge rule; glides that do not freeze; Sustain blends from the level sounding)",
+  "blockSize": 64,
+  "takes": [
+    {
+      "id": "flatpick",
+      "file": "solo note flatpicking dry.aif",
+      "noted": "defaults",
+      "samples48k": 2441740,
+      "inputSha256": "eaae72f3151a531698d6bcc7ad4b68e61dfe7931a14ebf0914f160b69483536e",
+      "samples44k1": 2243348,
+      "input44k1Sha256": "d3205cdb0811e3873c4c8dfa8532085c88b8b316b621a5b99cfecd6d60187e6d"
+    },
+    {
+      "id": "fingerpick",
+      "file": "solo note fingerpicking dry.aif",
+      "noted": "defaults",
+      "samples48k": 2066087,
+      "inputSha256": "df9b7ca07d26684cf5b544f21ebeb6ad21d7d5f5f35f0b4f3131da2088de4850"
+    },
+    {
+      "id": "bass",
+      "file": "bass line (played 3 octaves down with saw) dry.aif",
+      "noted": "Octave -3, Saw",
+      "samples48k": 1659131,
+      "inputSha256": "3bf0ff07c33138f554647a49fe6b33c1aad27071b1bac51b8a3edfeea6a565fe"
+    },
+    {
+      "id": "below",
+      "file": "playing at and below detection level (default latency) dry.aif",
+      "noted": "defaults",
+      "samples48k": 876522,
+      "inputSha256": "b40805a7d6c21891fc96783a9b42abfea90e1e8bf833aaa9cab95ec36702222a"
+    },
+    {
+      "id": "freeze3",
+      "file": "regular chord freeze test (chord freeze 3 notes) dry.aif",
+      "noted": "Chord Freeze, Size 3",
+      "samples48k": 1314783,
+      "inputSha256": "b64c910a9491551e5eb2527a4ad21594aab4ae8f4941eb4ee842881199e423fc"
+    },
+    {
+      "id": "harmonics",
+      "file": "harmonics (chord freeze 4 notes) dry.aif",
+      "noted": "Chord Freeze, Size 4",
+      "samples48k": 1314783,
+      "inputSha256": "2104f0002b63f7f20740ea8efb88a7acf7d043608d19c56ed06856d374362e77"
+    },
+    {
+      "id": "harmonize",
+      "file": "chord harmonizer test (Set to B major : G# minor) dry.aif",
+      "noted": "Chord Harmonize, B maj / G# min",
+      "samples48k": 2754783,
+      "inputSha256": "739d2c793a50fc7f52cebe13f4071e56b62b288a7a4a974e0a040c993c3e6c79",
+      "samples44k1": 2530956,
+      "input44k1Sha256": "8adbe547f9a92d3b3c04c5ce34926aaca3fa69cf62b62da4a9ee9f002de7121a"
+    }
+  ],
+  "renders": [
+    {
+      "take": "flatpick",
+      "settings": "noted (defaults)",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "bbf216bf2376d94a08932b120a1512da7c1ccdfc7ed39b4f9eaa0d304d94b96a",
+      "render": "flatpick-48000-00-noted_defaults.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "defaults",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "bbf216bf2376d94a08932b120a1512da7c1ccdfc7ed39b4f9eaa0d304d94b96a",
+      "render": "flatpick-48000-01-defaults.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Saw",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "bbf216bf2376d94a08932b120a1512da7c1ccdfc7ed39b4f9eaa0d304d94b96a",
+      "render": "flatpick-48000-02-wave_Saw.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Square",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Square",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "2f0c69f20603f3ef09675e10035adc32052706b5fd1adda63543390ab2ad048b",
+      "render": "flatpick-48000-03-wave_Square.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave NES Lead",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "NES Lead",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "680f6955cb8d6b0b3c8c34ffcc0656f0417258aca1b052856234c46de1a52625",
+      "render": "flatpick-48000-04-wave_NES_Lead.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Triangle",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Triangle",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "a7f93295210222aa60852354d8229f70b68bff963f4c797598724648159471a5",
+      "render": "flatpick-48000-05-wave_Triangle.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "dbf455417c7542d80fc72a4aed035e545115136962e8326048bdc919e1ebabf5",
+      "render": "flatpick-48000-06-wave_Sine.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Half-Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Half-Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "d91f8e25c6c61d20a838e5cf8f2ab0327c73645806ba008e4d3d5164fbfb8850",
+      "render": "flatpick-48000-07-wave_Half-Sine.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Organ",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Organ",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "9080d8c8bb1106efd1fc6fcd2c1ffeccc4d9afa246b4fafc5892732a6615b91e",
+      "render": "flatpick-48000-08-wave_Organ.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Folded",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Folded",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "ad4114393e9456800d085050e5bf6729a4d4960f8f1422ee9627e44013ae530b",
+      "render": "flatpick-48000-09-wave_Folded.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "octave -1",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -1,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "f8c426d925a8d42fbcea16b41e2df3d81eae766037466c88689208c818cf9168",
+      "render": "flatpick-48000-10-octave_-1.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "octave -2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -2,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "3fec7b60cf99f2c0e3016383c40a2619d1c18229a18f802f72dabb2cfc3c7c2d",
+      "render": "flatpick-48000-11-octave_-2.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "octave -3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "cf65ce12710c82efd63a0d8232742595dbdfaeebff40be2050230492f7106afd",
+      "render": "flatpick-48000-12-octave_-3.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "latency G3 (detent 0) 192.99 Hz, 10.38 ms",
+      "params": {
+        "windowHz": 192.990005493164062,
+        "latencyMs": 10.380000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "4e59c1e6ce36090ce2455dc29db7d57d3eb679ecbcf87d34a176bcfd1868d03d",
+      "render": "flatpick-48000-13-latency_G3_detent_0_192_99_Hz_10_38_ms.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "latency A4 (detent 14) 424.26 Hz, 4.71 ms",
+      "params": {
+        "windowHz": 424.260009765625,
+        "latencyMs": 4.71,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "e3b1e0742ead6c131795bbd1b516a62c25f0a5b2f8d6e0bdd834e556acfae078",
+      "render": "flatpick-48000-14-latency_A4_detent_14_424_26_Hz_4_71_ms.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "latency between detents 6 and 7 277.27 Hz, 7.21 ms",
+      "params": {
+        "windowHz": 277.270721435546875,
+        "latencyMs": 7.21,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "f6c1c2edfcf42fa1c50ff1e6da6e07922cf4dce0b1ef4b50126f60e56e217509",
+      "render": "flatpick-48000-15-latency_between_detents_6_and_7_277_27_Hz_7_21_ms.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "retune fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "fast",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "40a6a5197bce3c3b8e47d42ec0c3f85d442388b6860063058e239891469fa3a0",
+      "render": "flatpick-48000-16-retune_fast.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "retune slow",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "slow",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "be8258f7e449024a93d8b79c21d81f9ac43612c49e431d211b32a27b0e3186e2",
+      "render": "flatpick-48000-17-retune_slow.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "release fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 0.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "b24911fb65aff7490fef628025c75ab900dfc10beae2aaccc21a7eaaa252ec0a",
+      "render": "flatpick-48000-18-release_fast.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "release long",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 1500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "d5d6b50319c2b4a290f1b8812adea7f5ad525356e7aab557263b661be8095129",
+      "render": "flatpick-48000-19-release_long.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "sustain 0%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 0.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "0fee1534a65c871b44bbd9d4eaac2e8d5f5b3620d6edde1ed3f68fe951ce60c3",
+      "render": "flatpick-48000-20-sustain_0.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "sustain 100%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 100.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "398d8ae3cd1af7cf8401e2e11d4c2934996754b1cd8d4cfad974c717b475d30b",
+      "render": "flatpick-48000-21-sustain_100.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "freeze 2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 2
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "1de7c89613979c2c5f420eb29353f3210e776df6b7e6c0294e0ef71a3b38202b",
+      "render": "flatpick-48000-22-freeze_2.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "freeze 3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "35a33ac7475f8541117a0b6177e7b7b5641b414969ec02dfb16e67e9bad6e981",
+      "render": "flatpick-48000-23-freeze_3.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "freeze 4",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "cc364e443284cd1db9d4bc244b11e3f61736e0df44a6881e48b230fbc088ca1e",
+      "render": "flatpick-48000-24-freeze_4.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "harmonize C maj / A min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "C maj / A min"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "0cfd1b1bc2f3c9a2d3b592699eaee13e82d86141e659c88aae32c4e353469fec",
+      "render": "flatpick-48000-25-harmonize_C_maj__A_min.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "harmonize G maj / E min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "G maj / E min"
+      },
+      "sampleRate": 48000,
+      "samples": 2441740,
+      "sha256": "8b90a4c68db08458794a95eb0291ee641314502456b17e0c55f99b81474f9d30",
+      "render": "flatpick-48000-26-harmonize_G_maj__E_min.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "noted (defaults)",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "695214b299d86550187ed7445892c9301fb1f89d6e3081969ad18aa91948c22b",
+      "render": "flatpick-44100-00-noted_defaults.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "defaults",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "695214b299d86550187ed7445892c9301fb1f89d6e3081969ad18aa91948c22b",
+      "render": "flatpick-44100-01-defaults.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Saw",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "695214b299d86550187ed7445892c9301fb1f89d6e3081969ad18aa91948c22b",
+      "render": "flatpick-44100-02-wave_Saw.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Square",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Square",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "4dcba7d80f274489c8e7522053528b186a357f8a34f0131d5314a72edc34aaa0",
+      "render": "flatpick-44100-03-wave_Square.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave NES Lead",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "NES Lead",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "8335fb23ec10e06fae1705049eb9e3ab004f19e6243985d08b68c73d63222320",
+      "render": "flatpick-44100-04-wave_NES_Lead.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Triangle",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Triangle",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "3ef172ade49bc5e4919e38e0fa2169aa162656a135fddb8a970153c78acd0eda",
+      "render": "flatpick-44100-05-wave_Triangle.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "c5d419550cc58903b58202154f7be1e76726667fd10a8b3801a03c5037067ebe",
+      "render": "flatpick-44100-06-wave_Sine.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Half-Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Half-Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "2c78a7ce5ad0c045f6cbc79f69a220a3591cda4030f8fc409b461443685c61c3",
+      "render": "flatpick-44100-07-wave_Half-Sine.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Organ",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Organ",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "2ce090bce5847ccee5096f127111f024024d0bab2a4dd632b4571d40f73e19ef",
+      "render": "flatpick-44100-08-wave_Organ.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "wave Folded",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Folded",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "4b58df1d99063344c0525e245173e60f91894349c52725baafa5966645b85260",
+      "render": "flatpick-44100-09-wave_Folded.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "octave -1",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": -1,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "25df3da7f647bda8bdeb3f555608873bdcd8bec511373cdc1c06b1f5012cc567",
+      "render": "flatpick-44100-10-octave_-1.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "octave -2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": -2,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "d6e5665aff9e1a932b37b1fa6fd2661e1a76031e1227437c046c7e747e4efd80",
+      "render": "flatpick-44100-11-octave_-2.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "octave -3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "c3b6fcba532ff11a263d10af19fb27e36b664eb70d4882cbe645947298bbc929",
+      "render": "flatpick-44100-12-octave_-3.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "latency G3 (detent 0) 192.99 Hz, 10.38 ms",
+      "params": {
+        "windowHz": 192.990005493164062,
+        "latencyMs": 10.390000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "21d3311ea5231ea0890bb386b6e0e4b309c97e135190e73ac0d4dee19dfa8a38",
+      "render": "flatpick-44100-13-latency_G3_detent_0_192_99_Hz_10_38_ms.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "latency A4 (detent 14) 424.26 Hz, 4.71 ms",
+      "params": {
+        "windowHz": 424.260009765625,
+        "latencyMs": 4.72,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "6deaaf2ef7286875a1d1e05511445f465c64d25a19679eb518e14f31ee129d03",
+      "render": "flatpick-44100-14-latency_A4_detent_14_424_26_Hz_4_71_ms.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "latency between detents 6 and 7 277.27 Hz, 7.21 ms",
+      "params": {
+        "windowHz": 277.270721435546875,
+        "latencyMs": 7.21,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "683abd2fcd0dd5fac9c93901902000ed7a57404b335e4ef806cf0434c5126695",
+      "render": "flatpick-44100-15-latency_between_detents_6_and_7_277_27_Hz_7_21_ms.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "retune fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "fast",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "9537d30d5d7788fd37aea99249b21497a54773a7635f62607e01732aab2bffef",
+      "render": "flatpick-44100-16-retune_fast.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "retune slow",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "slow",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "bd18c406859429ee33541f671054a2ae77d3909b98917961d8a9e209b7243c28",
+      "render": "flatpick-44100-17-retune_slow.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "release fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 0.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "01b58096a727b1afb431f2cb010efa2037a551cd0bff6b4d18acbeef9cfb29ba",
+      "render": "flatpick-44100-18-release_fast.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "release long",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 1500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "a890a70870088fbc410a806e35f31f0e7a5abab2b5d24d3b1f4537c3d1e3aa28",
+      "render": "flatpick-44100-19-release_long.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "sustain 0%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 0.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "2172a51996cd671b9236f015ab4772660bc6dba7701288554d85aa18ccd98b8c",
+      "render": "flatpick-44100-20-sustain_0.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "sustain 100%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 100.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "5ceaa5de076fd6c80cb8fa6ee271d5ca3b5f65e15c30b412f9c73b45a6a2f6e2",
+      "render": "flatpick-44100-21-sustain_100.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "freeze 2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 2
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "282a8c64d324e5b37e9c6110ada4b5c4431a7c0196a6d9e79f35c085dce76ac1",
+      "render": "flatpick-44100-22-freeze_2.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "freeze 3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "c9b79077435341f08636b2a36ac9ac4b9d754db1a2a436b9a3eb865d392978d7",
+      "render": "flatpick-44100-23-freeze_3.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "freeze 4",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "883645cdeb447d3d0d42c51a08a05c462aa2063e40f6651e468a30a8751110d5",
+      "render": "flatpick-44100-24-freeze_4.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "harmonize C maj / A min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "C maj / A min"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "128b579f6135aa5b4f15c0267bd55cefae625621566b46ddc9ea4c7664817c4e",
+      "render": "flatpick-44100-25-harmonize_C_maj__A_min.wav"
+    },
+    {
+      "take": "flatpick",
+      "settings": "harmonize G maj / E min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "G maj / E min"
+      },
+      "sampleRate": 44100,
+      "samples": 2243348,
+      "sha256": "b4ae54296fb58ef10c6aafc55b13e2013287f1785a32899b81e04ec0b042faab",
+      "render": "flatpick-44100-26-harmonize_G_maj__E_min.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "noted (defaults)",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "a553a14e65bffaa43c3adb256bb623290f8581106c630008d6fe932ce9cebbb5",
+      "render": "fingerpick-48000-00-noted_defaults.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "defaults",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "a553a14e65bffaa43c3adb256bb623290f8581106c630008d6fe932ce9cebbb5",
+      "render": "fingerpick-48000-01-defaults.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "wave Saw",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "a553a14e65bffaa43c3adb256bb623290f8581106c630008d6fe932ce9cebbb5",
+      "render": "fingerpick-48000-02-wave_Saw.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "wave Square",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Square",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "3f81f68c7a18608a61fe219f21dbf894b0ce0c60fd0cc8dd35455da875cbaa43",
+      "render": "fingerpick-48000-03-wave_Square.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "wave NES Lead",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "NES Lead",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "4f1c5c99a93d3b048b1dcc453e3c0981e52f36157c3f778a6a0a4b5fa04602ca",
+      "render": "fingerpick-48000-04-wave_NES_Lead.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "wave Triangle",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Triangle",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "53b8883244ad40c1def21cdb9040b3010551d1d66b88b9eb58eb7d3e1e94b495",
+      "render": "fingerpick-48000-05-wave_Triangle.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "wave Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "4bf7b464e7f7bda2b843681b7f0d619b87ca367af33c05412155130ee2d8165f",
+      "render": "fingerpick-48000-06-wave_Sine.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "wave Half-Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Half-Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "e31d7ab41a6164e87006bdb5a965d80f2727ea04f0fabcf267a1d2d89ca1ef38",
+      "render": "fingerpick-48000-07-wave_Half-Sine.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "wave Organ",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Organ",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "9f53f858e571f57267d4b3cc5ca351e1fd29e8ce0081516f2f542b3eb65e03b2",
+      "render": "fingerpick-48000-08-wave_Organ.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "wave Folded",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Folded",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "37d2d7a5ffb77c112c13b0730fd6c7fe0eba64b1ecdf56c79ad004d7382c6d25",
+      "render": "fingerpick-48000-09-wave_Folded.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "octave -1",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -1,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "437886123667a39c634adb67b61e708096883ae30f7f047f35ca86f1af63c00b",
+      "render": "fingerpick-48000-10-octave_-1.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "octave -2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -2,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "dc3ae17832b2bbbd346d904b80427513afd2b4a6c9d1ad02b117dcc3dafc18e9",
+      "render": "fingerpick-48000-11-octave_-2.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "octave -3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "2b61ddbe7e84b179689387875b16d5844797831e57660bdaa179d2db81e17fd8",
+      "render": "fingerpick-48000-12-octave_-3.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "latency G3 (detent 0) 192.99 Hz, 10.38 ms",
+      "params": {
+        "windowHz": 192.990005493164062,
+        "latencyMs": 10.380000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "df3623975f7845500685836250d9b9d8a78bb15611ac7f6252d5d1b662080a2c",
+      "render": "fingerpick-48000-13-latency_G3_detent_0_192_99_Hz_10_38_ms.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "latency A4 (detent 14) 424.26 Hz, 4.71 ms",
+      "params": {
+        "windowHz": 424.260009765625,
+        "latencyMs": 4.71,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "62cbd3a6abade745ea052e5d14ed3e7860ae775c2684387ab020f724dcb4960f",
+      "render": "fingerpick-48000-14-latency_A4_detent_14_424_26_Hz_4_71_ms.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "latency between detents 6 and 7 277.27 Hz, 7.21 ms",
+      "params": {
+        "windowHz": 277.270721435546875,
+        "latencyMs": 7.21,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "86a1caf5a26ec5ab673078b04ac55b37bf32db52be8b89199065c543de0abbcf",
+      "render": "fingerpick-48000-15-latency_between_detents_6_and_7_277_27_Hz_7_21_ms.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "retune fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "fast",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "cd32aeb5a03e8849e389012bdcaa46fd40b850e7b27b0746419a2895ae906029",
+      "render": "fingerpick-48000-16-retune_fast.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "retune slow",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "slow",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "5ce8a2e84a25341e9902c7f5178d74b87f4398cc802d5c159e6748a7874c3fc7",
+      "render": "fingerpick-48000-17-retune_slow.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "release fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 0.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "774a988b319b434f29c864030eff33c202f1941f629acfced7351a982ca17483",
+      "render": "fingerpick-48000-18-release_fast.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "release long",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 1500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "10e3721d8b435dc7f9cdb662b5b8a3394bc379216be7d9cb174b117bd8f98068",
+      "render": "fingerpick-48000-19-release_long.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "sustain 0%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 0.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "c7866d8dda41e1e551fee1d7938fd099cea52e2ff0e321cadc828236581e564e",
+      "render": "fingerpick-48000-20-sustain_0.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "sustain 100%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 100.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "61cd31502b2689b4e043066138ad501f48e8e8c88683bc47cfd01aa2dc848d11",
+      "render": "fingerpick-48000-21-sustain_100.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "freeze 2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 2
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "b7c75ba544729b983da11353829042329ebfe49fb0af3f191b774fcf922d7c71",
+      "render": "fingerpick-48000-22-freeze_2.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "freeze 3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "d7e2b623ba3477eadd36364149bafeaf79a94902999adcfa73d2d8e22fdb148a",
+      "render": "fingerpick-48000-23-freeze_3.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "freeze 4",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "5dc539e7edc334e14c087580d12c9249dc3bafa88ee40d9e659966fa57a97fb6",
+      "render": "fingerpick-48000-24-freeze_4.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "harmonize C maj / A min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "C maj / A min"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "182657cc8d7c62ecd2962483c7d3ee0293bc239dd3d915e072b122a60bb3461a",
+      "render": "fingerpick-48000-25-harmonize_C_maj__A_min.wav"
+    },
+    {
+      "take": "fingerpick",
+      "settings": "harmonize G maj / E min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "G maj / E min"
+      },
+      "sampleRate": 48000,
+      "samples": 2066087,
+      "sha256": "d30a6cefede0431638391cc9c8b7a152e44ce74a2e0dc290e7a99df7dcdf46fe",
+      "render": "fingerpick-48000-26-harmonize_G_maj__E_min.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "noted (Octave -3, Saw)",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "f61298f108c3d3be3631f118ff21cc02fa123db59b12998660d98c2e3a99bd62",
+      "render": "bass-48000-00-noted_Octave_-3_Saw.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "defaults",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "953fc3099c646f14571c18c57eb44ace7baa7c21e5ddae212df7f72691dfece4",
+      "render": "bass-48000-01-defaults.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "wave Saw",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "953fc3099c646f14571c18c57eb44ace7baa7c21e5ddae212df7f72691dfece4",
+      "render": "bass-48000-02-wave_Saw.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "wave Square",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Square",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "9349d6091571d5ae95c2c732dae18510e0b8f9743d22cb7c26821a6a05f9c73a",
+      "render": "bass-48000-03-wave_Square.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "wave NES Lead",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "NES Lead",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "49a32f74c947b74b33071e4dd45a06c984b7f33b03abaf18d27e080001c390fb",
+      "render": "bass-48000-04-wave_NES_Lead.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "wave Triangle",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Triangle",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "69ebe74a918e2d793dd0f8bb5239f2733ae2700053100b8edd20c3680db2e78e",
+      "render": "bass-48000-05-wave_Triangle.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "wave Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "5b8d283ddd422be24627bdaf5b9df78105d2486e6609dc2b774bfc174ed645a8",
+      "render": "bass-48000-06-wave_Sine.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "wave Half-Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Half-Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "38b54a63e796f734cc610ec39cbf132238e58ea0b06fd28cbe229f60d29c0436",
+      "render": "bass-48000-07-wave_Half-Sine.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "wave Organ",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Organ",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "e08a823da22586e1539af315e69244b191120db9b75723b478855e0cc12c3972",
+      "render": "bass-48000-08-wave_Organ.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "wave Folded",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Folded",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "239657d22fa509c3b1c6d207a6457649e3465b7e63fd6bba639af7934366faaa",
+      "render": "bass-48000-09-wave_Folded.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "octave -1",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -1,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "19651a47d7b39d32d9265d415ded9024aa18813c4fc41d4a9cb5b1d2b8f5d96d",
+      "render": "bass-48000-10-octave_-1.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "octave -2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -2,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "a5ab4afdef01aeb32ecd2a9bbd5b725a7a9e01fda43bd50f3400c826fc5e9710",
+      "render": "bass-48000-11-octave_-2.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "octave -3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "f61298f108c3d3be3631f118ff21cc02fa123db59b12998660d98c2e3a99bd62",
+      "render": "bass-48000-12-octave_-3.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "latency G3 (detent 0) 192.99 Hz, 10.38 ms",
+      "params": {
+        "windowHz": 192.990005493164062,
+        "latencyMs": 10.380000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "aded78f80c977195ff8be4a1b87ba1d992bca97b5dba361276d93890fc70c022",
+      "render": "bass-48000-13-latency_G3_detent_0_192_99_Hz_10_38_ms.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "latency A4 (detent 14) 424.26 Hz, 4.71 ms",
+      "params": {
+        "windowHz": 424.260009765625,
+        "latencyMs": 4.71,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "fe909da8d1366439ad1249a12ebdc0c62c8866120b53119737174634f070e075",
+      "render": "bass-48000-14-latency_A4_detent_14_424_26_Hz_4_71_ms.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "latency between detents 6 and 7 277.27 Hz, 7.21 ms",
+      "params": {
+        "windowHz": 277.270721435546875,
+        "latencyMs": 7.21,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "a35842f53b5f6bf6af349e2b7084889a39811e3a606d49d5c6f7b543392f9b39",
+      "render": "bass-48000-15-latency_between_detents_6_and_7_277_27_Hz_7_21_ms.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "retune fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "fast",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "78474a7abc9a96fcaac787b7cf38b4da51d9fe7644132a70ec8bd7febac53a14",
+      "render": "bass-48000-16-retune_fast.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "retune slow",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "slow",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "daaed962dd1cecbe5e0cd793b57cc52440f1df1af89c475c81c04910de318768",
+      "render": "bass-48000-17-retune_slow.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "release fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 0.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "ed9458e742a8ce9197af2a38f778823830259a6c88c014c7f951b17a27352b3a",
+      "render": "bass-48000-18-release_fast.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "release long",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 1500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "62ede9b00908afc28e2c1a80d28f80356fecb6a3b4e7e1aa5f3b5a4630015c50",
+      "render": "bass-48000-19-release_long.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "sustain 0%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 0.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "4df14b33f1b38c53cf6c951e7f3ac2cb3412308e99fa8fd2276daf9a85453885",
+      "render": "bass-48000-20-sustain_0.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "sustain 100%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 100.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "13ecbf4d955c5b37a043a9591990a6971b5f92ba143cc982022a9312f592f721",
+      "render": "bass-48000-21-sustain_100.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "freeze 2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 2
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "42f59a2da91694990190449957201e7bac727578461770f800c418bef367ae9d",
+      "render": "bass-48000-22-freeze_2.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "freeze 3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "b2b6fd8506ca0970beca5cb0ad7b22de32254af4c335c5b10b2128d983c3caa2",
+      "render": "bass-48000-23-freeze_3.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "freeze 4",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "5b145c598bbdd4a4f857711bcd4b7a947b21076ee6e00be2fbed546433c6ce34",
+      "render": "bass-48000-24-freeze_4.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "harmonize C maj / A min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "C maj / A min"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "2083fc1be7617b76a169930b8b328050120a0e457d5e9030f7acfc83920d5661",
+      "render": "bass-48000-25-harmonize_C_maj__A_min.wav"
+    },
+    {
+      "take": "bass",
+      "settings": "harmonize G maj / E min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "G maj / E min"
+      },
+      "sampleRate": 48000,
+      "samples": 1659131,
+      "sha256": "fbb7d8362b6214d7ee036f3a0a16f7dac97e8108ca7106f5753044f122bcc917",
+      "render": "bass-48000-26-harmonize_G_maj__E_min.wav"
+    },
+    {
+      "take": "below",
+      "settings": "noted (defaults)",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "59cf4359e51a3741c03ad07a596149570a2ea25672c766fd99e2bdefd47f5d4d",
+      "render": "below-48000-00-noted_defaults.wav"
+    },
+    {
+      "take": "below",
+      "settings": "defaults",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "59cf4359e51a3741c03ad07a596149570a2ea25672c766fd99e2bdefd47f5d4d",
+      "render": "below-48000-01-defaults.wav"
+    },
+    {
+      "take": "below",
+      "settings": "wave Saw",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "59cf4359e51a3741c03ad07a596149570a2ea25672c766fd99e2bdefd47f5d4d",
+      "render": "below-48000-02-wave_Saw.wav"
+    },
+    {
+      "take": "below",
+      "settings": "wave Square",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Square",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "925a06e0b6d8e4ea325e45e0d043abb1efbcd76b6f5902e678868677ab1a98ff",
+      "render": "below-48000-03-wave_Square.wav"
+    },
+    {
+      "take": "below",
+      "settings": "wave NES Lead",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "NES Lead",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "3de6d349752ffe6b01963db0a0b1df656323f092661ad3578766b8c41deb0180",
+      "render": "below-48000-04-wave_NES_Lead.wav"
+    },
+    {
+      "take": "below",
+      "settings": "wave Triangle",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Triangle",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "b3fe7d981ddb45942cede95581a03b3edf9844bdd25d2af7178b0693f9cd3064",
+      "render": "below-48000-05-wave_Triangle.wav"
+    },
+    {
+      "take": "below",
+      "settings": "wave Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "732ad7dff4ddc255622fc718bd204786b5cc8ca71da4f1b1023314982ca3a251",
+      "render": "below-48000-06-wave_Sine.wav"
+    },
+    {
+      "take": "below",
+      "settings": "wave Half-Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Half-Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "1cd1eeafeb49f8bded90f7e692883def0fa14c2122be341cdcac9a54ec354047",
+      "render": "below-48000-07-wave_Half-Sine.wav"
+    },
+    {
+      "take": "below",
+      "settings": "wave Organ",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Organ",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "109fa767d4c9f63a7af6afd5a0c76b652683624446319d4040321d43d5db8141",
+      "render": "below-48000-08-wave_Organ.wav"
+    },
+    {
+      "take": "below",
+      "settings": "wave Folded",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Folded",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "f6be5d677082cb486827c135a420e67883abb41655837326d093fe692e3af0ae",
+      "render": "below-48000-09-wave_Folded.wav"
+    },
+    {
+      "take": "below",
+      "settings": "octave -1",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -1,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "4ceaec8c911933d7079be424633a5de32ce9d6a4abff9f5ffd10951c9b16e3c0",
+      "render": "below-48000-10-octave_-1.wav"
+    },
+    {
+      "take": "below",
+      "settings": "octave -2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -2,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "7d3c0cd59486d0c99a9fef94585ab9771fe91c698deb8f636805e2553fa80c8e",
+      "render": "below-48000-11-octave_-2.wav"
+    },
+    {
+      "take": "below",
+      "settings": "octave -3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "bb3d01413c1df2af59c1d649d5a51de0073b92e2884081161ad8de9e887a6c94",
+      "render": "below-48000-12-octave_-3.wav"
+    },
+    {
+      "take": "below",
+      "settings": "latency G3 (detent 0) 192.99 Hz, 10.38 ms",
+      "params": {
+        "windowHz": 192.990005493164062,
+        "latencyMs": 10.380000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "f5132f531d10cd64663cd6c57ddcfb216340d77f003f7be200a64aced701c3b4",
+      "render": "below-48000-13-latency_G3_detent_0_192_99_Hz_10_38_ms.wav"
+    },
+    {
+      "take": "below",
+      "settings": "latency A4 (detent 14) 424.26 Hz, 4.71 ms",
+      "params": {
+        "windowHz": 424.260009765625,
+        "latencyMs": 4.71,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "298705e5eddb7217bb69e8b0334e40ae7c95889254ce692c208ba649f52971e3",
+      "render": "below-48000-14-latency_A4_detent_14_424_26_Hz_4_71_ms.wav"
+    },
+    {
+      "take": "below",
+      "settings": "latency between detents 6 and 7 277.27 Hz, 7.21 ms",
+      "params": {
+        "windowHz": 277.270721435546875,
+        "latencyMs": 7.21,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "fd3767a0991fa64a862407a6b0c84c8dcfc916c469422ca5c41239bf5cc7878c",
+      "render": "below-48000-15-latency_between_detents_6_and_7_277_27_Hz_7_21_ms.wav"
+    },
+    {
+      "take": "below",
+      "settings": "retune fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "fast",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "1760cd8dd0653e35c4bc2b8584df48df7a01caa00f9b83edb24ff05a58e45361",
+      "render": "below-48000-16-retune_fast.wav"
+    },
+    {
+      "take": "below",
+      "settings": "retune slow",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "slow",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "299029d5ba97a3a03aaedf3435b6c6f6c224520f3d919e51959f6e467d753970",
+      "render": "below-48000-17-retune_slow.wav"
+    },
+    {
+      "take": "below",
+      "settings": "release fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 0.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "188322d1645ccfbdaff239841fdc0e40e807f3a9ba38eb5bfe854e7de25b9971",
+      "render": "below-48000-18-release_fast.wav"
+    },
+    {
+      "take": "below",
+      "settings": "release long",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 1500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "c1d3ebb36c5b8fcc3b5f5b594069e0f7c94f9c710033dc6680dc9f5b056c8f5b",
+      "render": "below-48000-19-release_long.wav"
+    },
+    {
+      "take": "below",
+      "settings": "sustain 0%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 0.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "9529cbe8f8865859e1c0b42f8e6e18644cc01988d3efefc22daf89c580f95839",
+      "render": "below-48000-20-sustain_0.wav"
+    },
+    {
+      "take": "below",
+      "settings": "sustain 100%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 100.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "d06799190c4043c0fc824aa87e08abda93bf7230bade9fb6e163930821dac7c4",
+      "render": "below-48000-21-sustain_100.wav"
+    },
+    {
+      "take": "below",
+      "settings": "freeze 2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 2
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "f3f91f4ab0ea44b68109969c197690462e1958521caea0a6989ffbe1f014dba4",
+      "render": "below-48000-22-freeze_2.wav"
+    },
+    {
+      "take": "below",
+      "settings": "freeze 3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "b79f9d5c93c3bbe204bce012c6ec7502278e800f20cdbe776839784ec2c8a07c",
+      "render": "below-48000-23-freeze_3.wav"
+    },
+    {
+      "take": "below",
+      "settings": "freeze 4",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "2c3e6c41f0935ea6b9b0466b30917380b08918400f8d260605987b63bcba0a8a",
+      "render": "below-48000-24-freeze_4.wav"
+    },
+    {
+      "take": "below",
+      "settings": "harmonize C maj / A min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "C maj / A min"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "916a95d2ca9f354c854702c44f5fe6ccc00bb772f283ad961cca12c28b3a6ea3",
+      "render": "below-48000-25-harmonize_C_maj__A_min.wav"
+    },
+    {
+      "take": "below",
+      "settings": "harmonize G maj / E min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "G maj / E min"
+      },
+      "sampleRate": 48000,
+      "samples": 876522,
+      "sha256": "b53bb2675bf63a35106135fb59dd1397d0006d367ac3d10a77de066a86d09237",
+      "render": "below-48000-26-harmonize_G_maj__E_min.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "noted (Chord Freeze, Size 3)",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "cd363bd0ebe00e6f6f56d31b8b07e181bd4cf122ebf9dffdcf43eb5e5a2816e9",
+      "render": "freeze3-48000-00-noted_Chord_Freeze_Size_3.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "defaults",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "5507fb504f8d349483271fb4f1d61dfd674c0de1259653af8f690356a8ceabdc",
+      "render": "freeze3-48000-01-defaults.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "wave Saw",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "5507fb504f8d349483271fb4f1d61dfd674c0de1259653af8f690356a8ceabdc",
+      "render": "freeze3-48000-02-wave_Saw.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "wave Square",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Square",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "a030db5effc1648304104d768df52fd8bb4936822631ef6ec1fdc7cc03045c95",
+      "render": "freeze3-48000-03-wave_Square.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "wave NES Lead",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "NES Lead",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "3ecb235f4b2110077b62736ec6d3c170bf296ece6cb3562884c6dfc994b58336",
+      "render": "freeze3-48000-04-wave_NES_Lead.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "wave Triangle",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Triangle",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "b39413be2294d402c412b99676e0e5239d1e6e0e33c81946e112eb102cb0c863",
+      "render": "freeze3-48000-05-wave_Triangle.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "wave Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "28b61cb176bfe89a2805df01d3eae23e1995de536dd5b8ae7121c3a82ff08852",
+      "render": "freeze3-48000-06-wave_Sine.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "wave Half-Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Half-Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "5e8020df38236353bcf8636044d4464fe62b8821af41c49ad7b68d40f8b75d8f",
+      "render": "freeze3-48000-07-wave_Half-Sine.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "wave Organ",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Organ",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "73197f14a998e9b22ebe9edddae90036e0b6bd31ffda072b277539e9672ef072",
+      "render": "freeze3-48000-08-wave_Organ.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "wave Folded",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Folded",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "42c7dfeeeda3aae53821dc2418501034f082f7df9f0235cf42c4d0786ded72f3",
+      "render": "freeze3-48000-09-wave_Folded.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "octave -1",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -1,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "f738bf4ae030c1af0a4cbf270bcbcc9b674fc993b439b9fee3b55cd033a8539a",
+      "render": "freeze3-48000-10-octave_-1.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "octave -2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -2,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "a96d1efe9583bb5af601347df0e9c654d5aa36ca7f01a624b0b69c19319341fa",
+      "render": "freeze3-48000-11-octave_-2.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "octave -3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "8c274c72b09bf4451bcc6e0d7ce0c2d64ce130c5901dbe60d6450534ace965b3",
+      "render": "freeze3-48000-12-octave_-3.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "latency G3 (detent 0) 192.99 Hz, 10.38 ms",
+      "params": {
+        "windowHz": 192.990005493164062,
+        "latencyMs": 10.380000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "1444c2f2e01685cba2c53489b718c5dfbfa64bf040803a45ce1da48a14e3e96f",
+      "render": "freeze3-48000-13-latency_G3_detent_0_192_99_Hz_10_38_ms.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "latency A4 (detent 14) 424.26 Hz, 4.71 ms",
+      "params": {
+        "windowHz": 424.260009765625,
+        "latencyMs": 4.71,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "128d9c2427e0c4eca30419d494201ddfdbcea89eb703196c900ec78b2e85c676",
+      "render": "freeze3-48000-14-latency_A4_detent_14_424_26_Hz_4_71_ms.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "latency between detents 6 and 7 277.27 Hz, 7.21 ms",
+      "params": {
+        "windowHz": 277.270721435546875,
+        "latencyMs": 7.21,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "b24afc95440a2a21f6a0d49ca1aea007bbf0785ed928cf882e77971b027d3e98",
+      "render": "freeze3-48000-15-latency_between_detents_6_and_7_277_27_Hz_7_21_ms.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "retune fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "fast",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "e1b512f58455dcf070f4a22f0d168b60fa78970ecac04c7d7fd60d9960f4dab8",
+      "render": "freeze3-48000-16-retune_fast.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "retune slow",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "slow",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "a699df751660c148d8d55a84153458d264b15ae72ecf05ac292ce5e3c12ffe4b",
+      "render": "freeze3-48000-17-retune_slow.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "release fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 0.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "dabc207234b5b95558759e8aa1e4af6acd182106aa07ffa664209131d6293222",
+      "render": "freeze3-48000-18-release_fast.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "release long",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 1500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "647c2a75d15c86bcb50a33e2944449d351d0f22f1a245c7d5d0b4f37f432fdb6",
+      "render": "freeze3-48000-19-release_long.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "sustain 0%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 0.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "602800b3f843b24abf1579d5b9dd18fff0bdf30668443c4eba3497badde4f8c6",
+      "render": "freeze3-48000-20-sustain_0.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "sustain 100%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 100.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "12af96018bd9625a1949483c1cffdbc4e008ca3b8041316f6ef98135ab713edc",
+      "render": "freeze3-48000-21-sustain_100.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "freeze 2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 2
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "d879ffde83b70ec821c38b53b6a7b2416ebcedc103820176be9e3d756cff6e28",
+      "render": "freeze3-48000-22-freeze_2.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "freeze 3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "cd363bd0ebe00e6f6f56d31b8b07e181bd4cf122ebf9dffdcf43eb5e5a2816e9",
+      "render": "freeze3-48000-23-freeze_3.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "freeze 4",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "005170a1c1b8ec40caac5182d0693a8d7dc5e009bb516636a99705431c5556dd",
+      "render": "freeze3-48000-24-freeze_4.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "harmonize C maj / A min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "C maj / A min"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "83e9abbd670d03394ea6dbdfca62559d473447e7eba405c827247a4f7d759e1e",
+      "render": "freeze3-48000-25-harmonize_C_maj__A_min.wav"
+    },
+    {
+      "take": "freeze3",
+      "settings": "harmonize G maj / E min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "G maj / E min"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "7c46de96d8afa02a16cd51956d1d96e144b6bdab5e8221ff9f0ae346f18e2c01",
+      "render": "freeze3-48000-26-harmonize_G_maj__E_min.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "noted (Chord Freeze, Size 4)",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "00cb0e74efdb10305d1d496e7e61d70f33e4a0f26c8217ec49a5f11c3dcfbc5e",
+      "render": "harmonics-48000-00-noted_Chord_Freeze_Size_4.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "defaults",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "247b5b250c930c7e57f343499b3ed4a6e6497294165c6267d8f74f28484b1eb0",
+      "render": "harmonics-48000-01-defaults.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "wave Saw",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "247b5b250c930c7e57f343499b3ed4a6e6497294165c6267d8f74f28484b1eb0",
+      "render": "harmonics-48000-02-wave_Saw.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "wave Square",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Square",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "3725fed8c98237cafecd4b081507898c76564e359fced2cedbbbc4879084f618",
+      "render": "harmonics-48000-03-wave_Square.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "wave NES Lead",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "NES Lead",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "ecef4412c766a2041ddc65c7bcf93652bedb156de6acc0ddddc46628ba379f9a",
+      "render": "harmonics-48000-04-wave_NES_Lead.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "wave Triangle",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Triangle",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "b55bf80c37d4d3a5f4e252eb21f36d8cf001fa039e534a31c937c6b82238de41",
+      "render": "harmonics-48000-05-wave_Triangle.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "wave Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "65cb6e5bce4c0c6b572297a6ee7a29f346043290925c1543255e96d477768378",
+      "render": "harmonics-48000-06-wave_Sine.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "wave Half-Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Half-Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "fa459b6acff7f22c9ed908d64b30cab8ae6995887d3c9ac893ba08c7258b4657",
+      "render": "harmonics-48000-07-wave_Half-Sine.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "wave Organ",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Organ",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "0a1e6a17c83e4a5ba0228ec3843f702798dea09a870ee449aed72b81c0ebcb51",
+      "render": "harmonics-48000-08-wave_Organ.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "wave Folded",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Folded",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "e25cf0f789e11f48bd72d3884cfe186187f6d090d3dcc6d3a6dcd7caa56f4c97",
+      "render": "harmonics-48000-09-wave_Folded.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "octave -1",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -1,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "1003f4e835924f974e4569aa630110a3edf00bceaaa91b85518d90488882296a",
+      "render": "harmonics-48000-10-octave_-1.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "octave -2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -2,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "f36f1fa5f4350237c556e6a482cd3e789d2e9c39cdfdfb1441d6da4d4ec37777",
+      "render": "harmonics-48000-11-octave_-2.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "octave -3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "dafec3929824ee8fa729232932ea891a3821e156e744aa6da0d9f3d8fccd6f1b",
+      "render": "harmonics-48000-12-octave_-3.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "latency G3 (detent 0) 192.99 Hz, 10.38 ms",
+      "params": {
+        "windowHz": 192.990005493164062,
+        "latencyMs": 10.380000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "7d63610d843cae4b70f6f3fd2db35c7d99d0dcf7bd7d9317b6d08b03729757b1",
+      "render": "harmonics-48000-13-latency_G3_detent_0_192_99_Hz_10_38_ms.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "latency A4 (detent 14) 424.26 Hz, 4.71 ms",
+      "params": {
+        "windowHz": 424.260009765625,
+        "latencyMs": 4.71,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "80686de22a420a3fa3ba5face37d06cd4c1010c40d13a951749e8141c1f85039",
+      "render": "harmonics-48000-14-latency_A4_detent_14_424_26_Hz_4_71_ms.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "latency between detents 6 and 7 277.27 Hz, 7.21 ms",
+      "params": {
+        "windowHz": 277.270721435546875,
+        "latencyMs": 7.21,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "eef40b4029df335214ca1624d90cf47258ec20fbc8c2d925e02eb36395b51457",
+      "render": "harmonics-48000-15-latency_between_detents_6_and_7_277_27_Hz_7_21_ms.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "retune fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "fast",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "7b691385a3d4a862d2d3d86eed9f0e6bfaeb6ac160f3c6d262bca67e3bf7a590",
+      "render": "harmonics-48000-16-retune_fast.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "retune slow",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "slow",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "ba20ab8ee2cb3a1aa225f04d4fd0db49263e38450d20ac2110d814c80a915e50",
+      "render": "harmonics-48000-17-retune_slow.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "release fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 0.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "99691c91fcbcaa9441089fad8eefe1b2ee5614e65c98242f67ba01f35e441018",
+      "render": "harmonics-48000-18-release_fast.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "release long",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 1500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "75bf12cf663ac17181acc934e0ed4cbde4cab3693a10e10ef5edbae117e94a77",
+      "render": "harmonics-48000-19-release_long.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "sustain 0%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 0.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "dfdee5451ef21467960d5cde06e365e408a2ec95ff2767a227c5bb23cc130e05",
+      "render": "harmonics-48000-20-sustain_0.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "sustain 100%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 100.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "febe2f9389cc3799246aeb2fe6fcbca6e22ce73cedcaacdd76a3306c408ec2fa",
+      "render": "harmonics-48000-21-sustain_100.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "freeze 2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 2
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "7f2dc3d7a260c7d4e22183ce1b944244f83fafaede8756bf97f95b7d05950a05",
+      "render": "harmonics-48000-22-freeze_2.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "freeze 3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "975f2ee2a40a5774a538b9fc00836e7d885a1d6bb9f7c6285dd32758edec0e95",
+      "render": "harmonics-48000-23-freeze_3.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "freeze 4",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "00cb0e74efdb10305d1d496e7e61d70f33e4a0f26c8217ec49a5f11c3dcfbc5e",
+      "render": "harmonics-48000-24-freeze_4.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "harmonize C maj / A min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "C maj / A min"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "32bfc0aca90b711df8dea3d85b8621ecd66504435a5794705c8a8d99e39c9fc0",
+      "render": "harmonics-48000-25-harmonize_C_maj__A_min.wav"
+    },
+    {
+      "take": "harmonics",
+      "settings": "harmonize G maj / E min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "G maj / E min"
+      },
+      "sampleRate": 48000,
+      "samples": 1314783,
+      "sha256": "876326fe23bf65a47cef90e00fa5587a6ce346b2b2df8f9535b4b01b4188ee2a",
+      "render": "harmonics-48000-26-harmonize_G_maj__E_min.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "noted (Chord Harmonize, B maj / G# min)",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "B maj / G# min"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "34bd95511c56ae012a37901a468bbaee417004e26009202f57b4a8cc345b99ff",
+      "render": "harmonize-48000-00-noted_Chord_Harmonize_B_maj__G_min.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "defaults",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "1827d031ec48987eb9a96aa8d7539651c0015a0184ec16d6dad7bc633d2d31f9",
+      "render": "harmonize-48000-01-defaults.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Saw",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "1827d031ec48987eb9a96aa8d7539651c0015a0184ec16d6dad7bc633d2d31f9",
+      "render": "harmonize-48000-02-wave_Saw.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Square",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Square",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "d005c4346623e8d8384c7cf4def35974766c7c8ebe3c00eddc2675e150e14fe6",
+      "render": "harmonize-48000-03-wave_Square.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave NES Lead",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "NES Lead",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "362ef2fa1c91dba246c17e86e76ae8662f4338a994ed91aa2cdd837936253823",
+      "render": "harmonize-48000-04-wave_NES_Lead.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Triangle",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Triangle",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "f40ea53e78dcde320995d861cd4d5067fbcb28ea96a9c7e8105ed8e02e2d9f62",
+      "render": "harmonize-48000-05-wave_Triangle.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "abe312ea95c5e5106c1dc9bd9a7841712fd1c0f1eca23e8446ccff2a1cbf88f7",
+      "render": "harmonize-48000-06-wave_Sine.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Half-Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Half-Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "fd1da609255ab8592df48dfd5d06ae2382f04669240180b6109768eb2aba5209",
+      "render": "harmonize-48000-07-wave_Half-Sine.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Organ",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Organ",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "36e53d04fffd5f7dfc393e290e9146d898b2900c2030e63ae2aad12227bcf54b",
+      "render": "harmonize-48000-08-wave_Organ.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Folded",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Folded",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "8f3440a495f2f851f0c942998a18e5b3686f591c7e4dcdaa7a13613636add578",
+      "render": "harmonize-48000-09-wave_Folded.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "octave -1",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -1,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "c8990c1ee4edb891f878464f7ec7b842957c16ade0b21aa396ad9585947e9781",
+      "render": "harmonize-48000-10-octave_-1.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "octave -2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -2,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "eda4762077ad0e9bb17c69d55f161c3480ab4c182c6f86782e5e2afcb3fdc401",
+      "render": "harmonize-48000-11-octave_-2.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "octave -3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "bd806632fcc3a9536ed6a30adbec9a06da6cc85bc0a62ece802547a41d083235",
+      "render": "harmonize-48000-12-octave_-3.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "latency G3 (detent 0) 192.99 Hz, 10.38 ms",
+      "params": {
+        "windowHz": 192.990005493164062,
+        "latencyMs": 10.380000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "a569298dfdebc992b039198b1a74c4d618233829e0ca38d951ab5d79279a39aa",
+      "render": "harmonize-48000-13-latency_G3_detent_0_192_99_Hz_10_38_ms.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "latency A4 (detent 14) 424.26 Hz, 4.71 ms",
+      "params": {
+        "windowHz": 424.260009765625,
+        "latencyMs": 4.71,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "c2a4daab7a412340941523eb746ca5dde5bb9c4a4fd7359b9788f26ab2c2cfe5",
+      "render": "harmonize-48000-14-latency_A4_detent_14_424_26_Hz_4_71_ms.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "latency between detents 6 and 7 277.27 Hz, 7.21 ms",
+      "params": {
+        "windowHz": 277.270721435546875,
+        "latencyMs": 7.21,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "e41c0931f552c7c06f1c33aafba3901668841b7682571eb34ecd26f70f35390d",
+      "render": "harmonize-48000-15-latency_between_detents_6_and_7_277_27_Hz_7_21_ms.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "retune fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "fast",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "81261d1bfb3e9ec8058d29120a8dacb3c33476cacdb6d9b9106a90ffc6e5a3b4",
+      "render": "harmonize-48000-16-retune_fast.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "retune slow",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "slow",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "575989fa8f2ee91914e6ad99b83814a70581227c3910393fe2c80664ae4acb51",
+      "render": "harmonize-48000-17-retune_slow.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "release fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 0.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "388d6a9035710db959ebefcc230baa885786b3fdb4de585ef90264f463d606b8",
+      "render": "harmonize-48000-18-release_fast.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "release long",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 1500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "315742ae470324608731daff2b4e1e4501db692438736f73c04291ac95742490",
+      "render": "harmonize-48000-19-release_long.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "sustain 0%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 0.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "5e2b456c14f54b99253a6c15e4580ca695cee5d70b170b141dc990112142c564",
+      "render": "harmonize-48000-20-sustain_0.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "sustain 100%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 100.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "d22f76b41de89a64a222cc8e5effceca93474945660d1bb9b6d1c3c6fb53397a",
+      "render": "harmonize-48000-21-sustain_100.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "freeze 2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 2
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "853c279be5f1369205c932bee9242f3736d2dd8c3ab85850bd72a073bad501f2",
+      "render": "harmonize-48000-22-freeze_2.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "freeze 3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "14642ee85540b6a197786e48b2845a74a36de044c486acbaa25f2c7f1ea08c4a",
+      "render": "harmonize-48000-23-freeze_3.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "freeze 4",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "6ed22fa558ea286f4275b8400bd29be1b6fe1c8ad1dd1c8887d97b214d20f7b1",
+      "render": "harmonize-48000-24-freeze_4.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "harmonize B maj / G# min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "B maj / G# min"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "34bd95511c56ae012a37901a468bbaee417004e26009202f57b4a8cc345b99ff",
+      "render": "harmonize-48000-25-harmonize_B_maj__G_min.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "harmonize G maj / E min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.289999999999999,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "G maj / E min"
+      },
+      "sampleRate": 48000,
+      "samples": 2754783,
+      "sha256": "73ce377d8551810a0250be4c35a6bfbdde295b74d0e0d7b4c6e855ec98db35b3",
+      "render": "harmonize-48000-26-harmonize_G_maj__E_min.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "noted (Chord Harmonize, B maj / G# min)",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "B maj / G# min"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "4af00749f813efa145f79e4e95f7b910bdb6388b244ced40e6208934d31c5725",
+      "render": "harmonize-44100-00-noted_Chord_Harmonize_B_maj__G_min.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "defaults",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "1a7993e7a83be598557f1d0458623efa8583e3fa7eeeb833f4bbcf5e23d358e8",
+      "render": "harmonize-44100-01-defaults.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Saw",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "1a7993e7a83be598557f1d0458623efa8583e3fa7eeeb833f4bbcf5e23d358e8",
+      "render": "harmonize-44100-02-wave_Saw.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Square",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Square",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "c55ca789def7c3e2c1c119937466865feae9abecf36ad61063008b906774f769",
+      "render": "harmonize-44100-03-wave_Square.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave NES Lead",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "NES Lead",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "869df5d329da1199cb9b36bf484c8e47df8cdf0b70d3187a53fd063d1f7d097b",
+      "render": "harmonize-44100-04-wave_NES_Lead.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Triangle",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Triangle",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "a99923b6dd30bf038dddfb33cfa8369d390861ce7a8c87204e1c459b3dbf7722",
+      "render": "harmonize-44100-05-wave_Triangle.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "b0ce63f021e8a4fe22d90bbbf49bc68e7523c5a5bf34cc170c738808a0e92199",
+      "render": "harmonize-44100-06-wave_Sine.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Half-Sine",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Half-Sine",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "3887eb7755eecb928e6a2f6bd14177e2d98df1e544fd5f26681df2fb43aa8cb1",
+      "render": "harmonize-44100-07-wave_Half-Sine.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Organ",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Organ",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "5ce88ab045c5353baad59713cdf144b4efa88dd2545cced9d23854830cd1af98",
+      "render": "harmonize-44100-08-wave_Organ.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "wave Folded",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Folded",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "62c9bd745a4194b6a17c9947c20538edd0e432ed956f78b3081d3b2684ff8777",
+      "render": "harmonize-44100-09-wave_Folded.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "octave -1",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": -1,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "60baaed1231eff7ee83476cf27249972dd832c9e9dc88b79767d2d71086cfb03",
+      "render": "harmonize-44100-10-octave_-1.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "octave -2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": -2,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "2ee0f3d2b369354797657246a24e2f2c5f2546d29f6755e2e144cfcbb778da10",
+      "render": "harmonize-44100-11-octave_-2.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "octave -3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": -3,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "573c384e3930e8e12e6097dcc9d6ea613ea53be699980c8b87d8e06ec0be1246",
+      "render": "harmonize-44100-12-octave_-3.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "latency G3 (detent 0) 192.99 Hz, 10.38 ms",
+      "params": {
+        "windowHz": 192.990005493164062,
+        "latencyMs": 10.390000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "7f80b23360fb2a3f4b89b06f4d7e9a08a2bad594f2c6a340a7c6a622495b039c",
+      "render": "harmonize-44100-13-latency_G3_detent_0_192_99_Hz_10_38_ms.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "latency A4 (detent 14) 424.26 Hz, 4.71 ms",
+      "params": {
+        "windowHz": 424.260009765625,
+        "latencyMs": 4.72,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "c7c5f84f8c707e11dfac004bce809cdfb36a1c616b35617c0880b1d168ffb4b3",
+      "render": "harmonize-44100-14-latency_A4_detent_14_424_26_Hz_4_71_ms.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "latency between detents 6 and 7 277.27 Hz, 7.21 ms",
+      "params": {
+        "windowHz": 277.270721435546875,
+        "latencyMs": 7.21,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "a77824cadccfd6799d0c8dde27554029b4f7c0e2dc3a68b8bc7f54371fa54b2e",
+      "render": "harmonize-44100-15-latency_between_detents_6_and_7_277_27_Hz_7_21_ms.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "retune fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "fast",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "736f9d43d5e8929ba3c84846ddd0c4995c650203267440e55a79b0394ec2c524",
+      "render": "harmonize-44100-16-retune_fast.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "retune slow",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "slow",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "e1f28f173d506e77eb0705a44f18506f67564c7ff23c87e19c9937d2c3787366",
+      "render": "harmonize-44100-17-retune_slow.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "release fast",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 0.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "f79c465391a3115b45f39d4171da41a08dfc1d5efdf1f8aeff81beb3b6de4fdd",
+      "render": "harmonize-44100-18-release_fast.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "release long",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 1500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "165e2a740b6c28108006b1e1cff417ddb4ab83645a70b701344a3acb625f3e30",
+      "render": "harmonize-44100-19-release_long.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "sustain 0%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 0.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "4f2c9c36aba96ba313593e3f1ae80bc2ee918f551f4c426c3a3bedaf7ee06e23",
+      "render": "harmonize-44100-20-sustain_0.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "sustain 100%",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 100.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "off"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "99665389b5230a7fb6cf482f101823c1f07229996d374878bc1f8ea774321aa9",
+      "render": "harmonize-44100-21-sustain_100.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "freeze 2",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 2
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "d928130eb7dfbe5e0db3c850104e648d470e9740c38cdbecb67e0b05191fb2e0",
+      "render": "harmonize-44100-22-freeze_2.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "freeze 3",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 3
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "e40c920df240da79e8099f2253fe029ed9338b864c5c71a678bba9fd4d09a47d",
+      "render": "harmonize-44100-23-freeze_3.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "freeze 4",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "freeze",
+        "chordSize": 4
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "a8df12458beb437bc2cd0576e80123dc7198a2aa49a856af3325ad535addb5b8",
+      "render": "harmonize-44100-24-freeze_4.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "harmonize B maj / G# min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "B maj / G# min"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "4af00749f813efa145f79e4e95f7b910bdb6388b244ced40e6208934d31c5725",
+      "render": "harmonize-44100-25-harmonize_B_maj__G_min.wav"
+    },
+    {
+      "take": "harmonize",
+      "settings": "harmonize G maj / E min",
+      "params": {
+        "windowHz": 240.617950439453125,
+        "latencyMs": 8.300000000000001,
+        "wave": "Saw",
+        "octave": 0,
+        "sustainPercent": 75.0,
+        "retune": "medium",
+        "releaseMs": 500.0,
+        "chord": "harmonize",
+        "key": "G maj / E min"
+      },
+      "sampleRate": 44100,
+      "samples": 2530956,
+      "sha256": "4fd440e61a73d6d764a84310fbaf0d2656e22aebb9e5fb901ef71f587e7f41c8",
+      "render": "harmonize-44100-26-harmonize_G_maj__E_min.wav"
+    }
+  ]
+}
