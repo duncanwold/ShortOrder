@@ -10,7 +10,7 @@ I hope you enjoy playing with ShortOrder as much as I enjoyed building it. Pleas
 
 ![ShortOrder](images/shortorder.png)
 
-ShortOrder turns a guitar's pitch into a hard-snapped monophonic synth voice with a fixed, low latency that you set. It is a free, MIT-licensed plug-in for macOS (AU and VST3) with a standalone app. An AAX build for Pro Tools is planned.
+ShortOrder turns a guitar's pitch into a hard-snapped monophonic synth voice with a fixed, low latency that you set. It is a free, MIT-licensed plug-in for macOS (AU, VST3 and AAX for Pro Tools) with a standalone app.
 
 **[Download the latest release](../../releases/latest)**
 
@@ -43,12 +43,17 @@ A new pick within 100 ms of the last note glides in from that note.
 
 ## Install
 
-Download the zip for your format from [Releases](../../releases/latest). Each is signed and notarized.
+Download from [Releases](../../releases/latest). Everything is signed and notarized.
 
-1. Unzip it.
+**Installer:** open `ShortOrder-1.0.1-macOS.pkg`, click **Customize**, and choose the formats you want: AU, VST3, AAX or the standalone app.
+
+**Zips:**
+
+1. Unzip the zip for your format.
 2. In Finder, press **Cmd + Shift + G** and go to the folder for your format:
    - AU: `/Library/Audio/Plug-Ins/Components`
    - VST3: `/Library/Audio/Plug-Ins/VST3`
+   - AAX (Pro Tools): `/Library/Application Support/Avid/Audio/Plug-Ins`
    - Standalone: `/Applications`
 3. Drag the plug-in or app into that folder.
 4. Open your DAW, and rescan plug-ins if ShortOrder doesn't appear.
