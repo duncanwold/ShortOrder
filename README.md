@@ -8,7 +8,7 @@ Thank you for checking out my guitar synthesizer plugin, ShortOrder. I love guit
 
 I hope you enjoy playing with ShortOrder as much as I enjoyed building it. Please [reach out](../../issues) and let me know what you think!
 
-![ShortOrder](images/shortorder.png)
+![ShortOrder](images/shortorder110.png)
 
 ShortOrder turns a guitar's pitch into a hard-snapped monophonic synth voice with a fixed, low latency that you set. It is a free, MIT-licensed plug-in for macOS (AU, VST3 and AAX for Pro Tools) with a standalone app.
 
