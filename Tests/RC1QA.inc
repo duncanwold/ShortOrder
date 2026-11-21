@@ -1542,7 +1542,7 @@ struct Delay
     double t, sound, pitch;
     bool fromSilence;
     int note;
-    double open = -1.0; // from silence: the voice gate's first open sample after the input's rise, at output time (+ L), ms
+    double open = -1.0; // from silence: the voice gate's first open sample after the input's rise, at output time (+ D, the voice's delay), ms
 };
 std::vector<Delay> delaysFor (const Analysis& a, const std::vector<float>& input, const std::vector<blips::Pick>& ps)
 {
@@ -2262,7 +2262,7 @@ void probeEdge()
             std::vector<HopInfo> hops;
             e.hopListener = [&] (const HopInfo& x) { hops.push_back (x); };
             runEngine (e, in, p);
-            const double edgeHz = kFs / (double) (e.currentLatencySamples() / 2); // tauMax = L / 2
+            const double edgeHz = kFs / (double) (e.windowLength() / 2); // tauMax = L / 2
             int edge = 0, voiced = 0, changed = 0;
             juce::String where;
             int prevN = -1;

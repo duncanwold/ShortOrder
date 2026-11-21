@@ -64,12 +64,13 @@ void testChordSplit()
     check (bad == 0, juce::String::formatted ("audio: %d renders (each combination on a Freeze phrase and a Harmonize phrase) identical to the old choice", (int) diffs.size()));
 }
 
-// v0.7: the latency parameter's host text (Latency.h, Params.cpp): the faceplate's ms with the unit, "8.3 ms" at the default (48 kHz,
-// also the rate before one is known); at every detent and every common rate the text reads back as that detent's value exactly
-// (text -> value -> text the same), every detent's text is its own; a value between detents reads back as the same window length L.
+// v0.7: the latency parameter's host text (Latency.h, Params.cpp): the faceplate's ms with the unit, the voice's delay D (1.1: "4.1 ms"
+// at the default, 48 kHz, also the rate before one is known; 1.0.x showed L, "8.3 ms"); at every detent and every common rate the text
+// reads back as that detent's value exactly (text -> value -> text the same), every detent's text is its own; a value between detents
+// reads back as the same text.
 void testLatencyText()
 {
-    check (latencyHostText (48000.0, defaultWindowHz()) == "8.3 ms" && latencyHostText (0.0, defaultWindowHz()) == "8.3 ms",
+    check (latencyHostText (48000.0, defaultWindowHz()) == "4.1 ms" && latencyHostText (0.0, defaultWindowHz()) == "4.1 ms",
            juce::String ("the default reads \"") + latencyHostText (48000.0, defaultWindowHz()) + "\" at 48 kHz and before a rate is known (\""
                + latencyHostText (0.0, defaultWindowHz()) + "\")");
 
@@ -95,7 +96,7 @@ void testLatencyText()
     check (unique, "every detent's text is its own at every common rate");
     check (faceplate, "the host text is the faceplate's readout (latencyMsText) with \" ms\"");
 
-    // Between detents (and typed values): the window whose L is that many ms; the same L back; clamped to the range.
+    // Between detents (and typed values): the window whose D is that many ms; the same text back; clamped to the range.
     bool between = true;
     for (double fs : kCommonSampleRates)
         for (int k = 0; k + 1 < kLatencyDetents; ++k)
@@ -103,7 +104,9 @@ void testLatencyText()
             const double hz = std::sqrt ((double) latencyDetentHz (k) * latencyDetentHz (k + 1));
             const auto text = latencyHostText (fs, hz);
             const double back = latencyHzForMs (fs, juce::String (text).getDoubleValue());
-            between = between && latencyHostText (fs, back) == text && back >= derivedWindowMinHz() && back <= kWindowMaxHz;
+            // (1.1: the voice's delay has half L's resolution, so a text between detents can be a detent's own, which reads back as
+            // that detent's stored value: within the parameter's range as it stores it, a float.)
+            between = between && latencyHostText (fs, back) == text && back >= (float) derivedWindowMinHz() && back <= (float) kWindowMaxHz;
         }
     const bool clamped = latencyHzForMs (48000.0, 50.0) == derivedWindowMinHz() && latencyHzForMs (48000.0, 1.0) == kWindowMaxHz
                          && latencyHzForMs (48000.0, 0.0) == kWindowMaxHz;
@@ -143,7 +146,7 @@ void testLatencyDetents()
             notes = notes && n == kPlayableLowestNote + k && lowestReliableNote (fs, roundTrip) == n;
             lows << n << " ";
             if (k > 0)
-                monotone = monotone && latencyFor (fs, hz) <= latencyFor (fs, latencyDetentHz (k - 1));
+                monotone = monotone && voiceDelayFor (fs, hz) <= voiceDelayFor (fs, latencyDetentHz (k - 1));
         }
         positions = positions && std::abs (latencyKnobPosition (hz) - k) < 1e-5 && nearestLatencyDetent (hz) == k && nearestLatencyDetent (roundTrip) == k;
         table << juce::String::formatted ("\n      %-2d %-4s %8.3f   %s / %s / %s ms   (", k, names[k], hz, latencyMsText (44100.0, hz).c_str(), latencyMsText (48000.0, hz).c_str(),
@@ -151,13 +154,14 @@ void testLatencyDetents()
               << lows.trim() << ")";
     }
     check (notes, "every detent's lowest reliable note is G3 + k at every common rate (also after the parameter's normalised round trip); none nudged" + table);
-    check (monotone && latencyMs (48000.0, k14) < latencyMs (48000.0, k0), "turning right (k up) lowers the latency at every common rate: 10.4 ms (k = 0) .. 4.7 ms (k = 14) at 48 kHz");
+    check (monotone && latencyMs (48000.0, k14) < latencyMs (48000.0, k0), "turning right (k up) lowers the latency at every common rate: 5.2 ms (k = 0) .. 2.4 ms (k = 14) at 48 kHz");
     check (positions, "each detent sits at its own position on the knob (and the nearest detent to its value is itself)");
 
-    // The readout text at 44.1 / 48 / 96 kHz: the default, both ends.
-    const bool text = latencyMsText (48000.0, k4) == "8.3" && latencyMsText (48000.0, k0) == "10.4" && latencyMsText (48000.0, k14) == "4.7"
-                      && latencyMsText (44100.0, k4) == "8.3" && latencyMsText (96000.0, k4) == "8.3" && latencyMsText (44100.0, k14) == "4.7"
-                      && latencyMsText (96000.0, k14) == "4.7" && latencyMsText (44100.0, k0) == "10.4" && latencyMsText (96000.0, k0) == "10.4";
+    // The readout text at 44.1 / 48 / 96 kHz: the default, both ends. 1.1: the voice's delay D (half of 1.0.x's 8.3 / 10.4 / 4.7); at
+    // 96 kHz the default's D is 399 samples, 4.16 ms, so it reads 4.2 (at 44.1 and 48 kHz 4.15 ms, 4.1).
+    const bool text = latencyMsText (48000.0, k4) == "4.1" && latencyMsText (48000.0, k0) == "5.2" && latencyMsText (48000.0, k14) == "2.4"
+                      && latencyMsText (44100.0, k4) == "4.1" && latencyMsText (96000.0, k4) == "4.2" && latencyMsText (44100.0, k14) == "2.4"
+                      && latencyMsText (96000.0, k14) == "2.4" && latencyMsText (44100.0, k0) == "5.2" && latencyMsText (96000.0, k0) == "5.2";
     check (text, juce::String ("readout: default ") + latencyMsText (44100.0, k4) + " / " + latencyMsText (48000.0, k4) + " / " + latencyMsText (96000.0, k4)
                      + " ms, fully left " + latencyMsText (44100.0, k0) + " / " + latencyMsText (48000.0, k0) + " / " + latencyMsText (96000.0, k0) + ", fully right "
                      + latencyMsText (44100.0, k14) + " / " + latencyMsText (48000.0, k14) + " / " + latencyMsText (96000.0, k14) + " (44.1 / 48 / 96 kHz)");

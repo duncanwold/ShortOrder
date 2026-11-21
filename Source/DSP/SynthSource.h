@@ -69,7 +69,7 @@ private:
     float lastPeak = 0.0f;
 };
 
-// The synth voice: one Tone driven by an envelope follower on the (L-delayed) guitar, at full level.
+// The synth voice: one Tone driven by an envelope follower on the (D-delayed) guitar, at full level.
 // At default voice settings this is v0.1's (and v0.2's and v0.3's) code path, sample for sample.
 class SynthSource
 {
@@ -80,7 +80,7 @@ public:
     // Call once per block before process().
     void setVoice (const VoiceSettings& v) { voice.setVoice (v); }
 
-    // delayedIn: the guitar on the L-delayed timeline. targetMidi: T (may be fractional
+    // delayedIn: the guitar on the D-delayed timeline. targetMidi: T (may be fractional
     // while gliding). periodSamples: the (held) input period at this point of the timeline.
     float process (float delayedIn, float targetMidi, float periodSamples) { return render (targetMidi, follow (delayedIn, periodSamples)); }
 

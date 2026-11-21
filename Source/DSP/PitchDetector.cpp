@@ -16,7 +16,7 @@ void PitchDetector::prepare (double sampleRate, int /*maxBlockSize*/, double min
 
     for (auto& f : ffts)
         f.reset();
-    const int loOrder = (int) std::log2 (nextPow2 (latencyFor (fs, kWindowMaxHz)));
+    const int loOrder = (int) std::log2 (nextPow2 (windowLengthFor (fs, kWindowMaxHz)));
     const int hiOrder = std::min (kMaxOrder, (int) std::log2 (nextPow2 (2 * (int) std::lround (fs / minWindow))));
     for (int order = loOrder; order <= hiOrder; ++order)
         ffts[order] = std::make_unique<juce::dsp::FFT> (order);

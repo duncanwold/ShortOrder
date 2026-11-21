@@ -329,7 +329,7 @@ juce::var settingsJson (const EngineParams& p, double fs)
 
 // --- Rendering -----------------------------------------------------------------------------------------------------------------
 // What the manifest says it was made from (set on each commit that changes the renders).
-constexpr const char* kGoldenEngine = "v0.6.2: fixes 1, 2 and 4 (the bottom edge rule; glides that do not freeze; Sustain blends from the level sounding)";
+constexpr const char* kGoldenEngine = "1.1: the voice at D = L / 2 (1.0.x: L) and the fresh-start snap (ended by an onset); before it v0.6.2's fixes 1, 2 and 4";
 constexpr int kBlock = 64; // the engine's output doesn't depend on the block (checked by --golden-write), but the manifest pins it
 
 struct Job

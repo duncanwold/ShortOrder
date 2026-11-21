@@ -1,4 +1,5 @@
 #include "PluginEditor.h"
+#include "Latency.h"
 #include "Tab.h"
 #include "ChordName.h"
 
@@ -300,7 +301,7 @@ juce::String GTTEditor::formatDebugLine (const gtt::Readout& r, const gtt::LowRa
 juce::String GTTEditor::formatWindowLine (double fs, const gtt::DetectionSettings& effective, float gainReductionDb)
 {
     const double windowHz = gtt::clampWindow (effective.windowHz);
-    const double latMs = 1000.0 * gtt::latencyFor (fs, windowHz) / fs;
+    const double latMs = gtt::latencyMs (fs, windowHz); // the voice's delay, as the readout
     const int lowest = gtt::lowestReliableNote (fs, windowHz);
     // The headroom gain, while it's reducing (nothing once it rounds to 0.0 dB).
     const double gr = std::round (gainReductionDb * 10.0) / 10.0;

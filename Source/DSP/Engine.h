@@ -24,7 +24,7 @@ namespace gtt
 struct EngineParams
 {
     // NOTE DETECTION
-    float windowHz = defaultWindowHz();           // "Latency / Minimum Pitch": L = 2 * round(fs / windowHz)
+    float windowHz = defaultWindowHz();           // "Latency": the window L = 2 * round(fs / windowHz); the voice plays D = L / 2 behind
     float sustainPercent = kDefaultSustainPercent; // "Sustain": how much of the guitar's fade the level ignores while detected
     float dynamicsPercent = 100.0f * kDynamics;   // fixed (v0.5.2): 100 = notes as played (bypassed), 0 = every note at the same level
     float holdMs = kDefaultNoteReleaseMs;         // "Note Release": keep the last note this long after pitch is lost (the choice's time, noteReleaseMsFor)
@@ -229,7 +229,8 @@ public:
     // v0.5.11: the pitch trace's feed (display only). The engine pushes a TraceFrame every hop of the voice's timeline while the
     // feed has readers (an editor open); never otherwise. Set once, before processing (the processor owns the FIFO).
     void setTraceFeed (TraceFifo* feed) { trace = feed; }
-    int currentLatencySamples() const { return latency; }
+    int currentLatencySamples() const { return voiceDelay; } // the voice's delay D (voiceDelayFor): what the output plays behind the input
+    int windowLength() const { return windowLen; }           // the detector's window L
     double sampleRate() const { return fs; }
     int hopSize() const { return hop; }
     int windowSwaps() const { return swapCount; } // number of L changes applied (tests)
@@ -341,7 +342,9 @@ private:
     float processVoice (int64_t t, float delayedIn, int holdSamples, const Settings& s);
 
     double fs = 48000.0;
-    int latency = 0;
+    int windowLen = 0;  // L, the detector's window
+    int64_t freshLatchEntry = -(1 << 30), freshSnapLen = 1; // the fresh-start snap (Macro.h): the last fresh latch's entry time; kFreshSnapMs
+    int voiceDelay = 0; // D = voiceDelayForWindow (L): the voice plays the timeline this far behind the newest input sample
     int hop = 128, hopCounter = 0;
 
     History history;
@@ -386,7 +389,7 @@ private:
     static constexpr double kHeldLiveGraceMs = 50.0;
     int heldGraceLen = 1;
     // Window (L) change: once the knob has been still for kSettleMs, fade the voice
-    // out over 20 ms, swap L everywhere, fade back in over 20 ms. One swap per gesture.
+    // out over 20 ms, swap L (and D) everywhere, fade back in over 20 ms. One swap per gesture.
     static constexpr double kSettleMs = 100.0;
     LinearRamp windowFade;
     enum class WindowState { Idle, FadingOut, FadingIn } windowState = WindowState::Idle;

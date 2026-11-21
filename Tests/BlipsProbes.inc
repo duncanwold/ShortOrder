@@ -90,7 +90,7 @@ Run run (const std::vector<float>& in, const EngineParams& p, const std::functio
     return r;
 }
 
-// The output's pitch, cycle by cycle (a sine voice: upward zero crossings, interpolated), in voice time (output index - L).
+// The output's pitch, cycle by cycle (a sine voice: upward zero crossings, interpolated), in voice time (output index - D, the voice's delay).
 struct Cycle
 {
     double t = 0.0; // the cycle's middle, samples

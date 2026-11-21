@@ -86,10 +86,16 @@ inline double lowRangeWindowHz()
 }
 
 // The Window range is the playable zone: derivedWindowMinHz() .. kWindowMaxHz.
-// tauMax = round(fs / windowHz); pipeline latency L = 2 * tauMax.
+// tauMax = round(fs / windowHz); the detector's window L = 2 * tauMax.
 inline double clampWindow (double hz) { return std::clamp (hz, derivedWindowMinHz(), kWindowMaxHz); }
 inline int tauMaxFor (double fs, double windowHz) { return (int) std::lround (fs / clampWindow (windowHz)); }
-inline int latencyFor (double fs, double windowHz) { return 2 * tauMaxFor (fs, windowHz); }
+inline int windowLengthFor (double fs, double windowHz) { return 2 * tauMaxFor (fs, windowHz); }
+// 1.1: the voice's delay D, how far behind the input the voice plays (the latency): L / 2 (= tauMax). Each hop's reading is stamped at
+// its window's centre, L / 2 behind the window's newest sample, and pushed the sample that newest one arrives, so the voice may read
+// it from D >= L / 2 - 1 on (checked in the 1.1 look-ahead audit; up to 1.0.x the voice played at D = L). The
+// one definition: the engine plays at it, and the readout and the host text show it.
+inline int voiceDelayForWindow (int windowLength) { return windowLength / 2; }
+inline int voiceDelayFor (double fs, double windowHz) { return voiceDelayForWindow (windowLengthFor (fs, windowHz)); }
 // Buffers are sized for the longest window at max(fs, 96 kHz). minWindowHz below the playable
 // zone is only for the offline tests' measuring detector.
 inline int maxTauFor (double fs, double minWindowHz = derivedWindowMinHz())

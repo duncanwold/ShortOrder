@@ -129,6 +129,15 @@ inline float retuneMsFor (RetuneSpeed s)
 constexpr double kOnsetSnapMs = 25.0;
 constexpr int kOnsetSnapSemitones = 7;
 
+// 1.1, the fresh-start snap: a note from silence (the quantizer's fresh latch) whose
+// note changes within kFreshSnapMs of the latch (entry time) snaps there (Retune instant) instead of gliding. The first sure reading
+// can come from a window still holding a little silence, a neighbour up to ~50 c off, and without the snap that wrong first note
+// glided 35-40 ms into the right one. Only a note from silence's own correction: a glide-in, a pick glide or a legato change in a
+// phrase never latches fresh, and an onset ends the window (1.1 narrows the rule here: with the window running on through a new
+// pick, 2 of the pick-glide test's 180 Release Fast picks into a damped note snapped, after the damped note re-latched fresh for one
+// hop), so each keeps its Retune scoop.
+constexpr float kFreshSnapMs = 15.0f;
+
 // The sputter fix (v0.5.5; docs/reports/SPUTTER-REPORT.md's "fix2"): the end of long held notes, and mutes. Engine::sputterFix
 // builds it from these; Engine::setSputterFix (false) is v0.5.4 (tests only).
 // 1. Grace: a pitch dropout shorter than this doesn't start Sustain's release fade, and the gate's Note Release

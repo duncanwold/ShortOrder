@@ -9,11 +9,13 @@ namespace gtt
 // Onsets (a pluck, including a re-pluck of a note that's still ringing) and the guitar's level,
 // fast. Shared by Sustain (its reference level and restarts) and the quantizer (its onsets). The engine
 // runs it on every sample; it never changes the output on its own.
-//  - Onsets are found on the undelayed input, L samples ahead of the voice: a fast level (one-period
-//    mean |x|, 3 ms attack, 10 ms release) jumping 3 dB above its own 30 ms average (re-armed once
-//    it's back within 1 dB). Each is stamped with the sample where that rise began, and the voice
-//    takes it when its delayed timeline reaches that sample: before the rise reaches the level it
-//    plays, as long as the detection took less than L (a few ms; at the window's top, L is 4.7 ms).
+//  - Onsets are found on the undelayed input, D samples ahead of the voice (the voice's delay, L / 2): a
+//    fast level (one-period mean |x|, 3 ms attack, 10 ms release) jumping 3 dB above its own 30 ms average
+//    (re-armed once it's back within 1 dB). Each is stamped with the sample where that rise began, and the
+//    voice takes it when its delayed timeline reaches that sample, as long as the detection took less
+//    than D (4.1 ms at the default, 2.4 ms at the window's top); a later one is taken at the voice's next
+//    sample. (The 1.1 measurements put the detection at a median 4.9 ms on the RC takes, so since 1.1 most
+//    are taken a few ms late, as one in five already was at 1.0's D = L; nothing it measured moved.)
 //  - level(): the same fast follower on the delayed timeline (the voice's own one-period mean |x|),
 //    so Sustain reads a new, quieter note within a few ms (the envelope follower's 120 ms release
 //    can't).

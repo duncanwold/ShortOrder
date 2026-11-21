@@ -14,7 +14,7 @@ namespace gtt
 struct TraceFrame
 {
     static constexpr int kChordTones = 4; // the chord's other tones drawn (Freeze 4 holds 3 besides the live note; Harmonize 2)
-    int64_t time = 0;       // the voice's timeline (input samples; the output plays it L later)
+    int64_t time = 0;       // the voice's timeline (input samples; the output plays it D later)
     float inMidi = -1.0f;   // the detector's raw pitch for this moment (MIDI, unquantized), -1 where it has none
     float inConfidence = 0.0f;
     float outMidi = -1.0f;  // the voice's sounding pitch (T and Octave), -1 while it's silent

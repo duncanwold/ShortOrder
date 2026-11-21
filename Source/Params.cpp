@@ -41,8 +41,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout (bool 
     auto latency = std::make_unique<juce::AudioProcessorParameterGroup> ("main", "Latency", "|");
     // The detector's window (Hz): L = 2 * round(fs / Hz). Skewed about the geometric middle (286.1 Hz), so equal travel is roughly
     // equal frets of the lowest note over the whole 13.6 semitones; the default (240.62 Hz) sits at 30% of the travel, 300 Hz at 56%.
-    // The value stays Hz; the host's text is the faceplate's ms at the current rate (v0.7: "8.3 ms" at the default, 48 kHz before a
-    // rate is known; gtt::latencyHostText), and typed text is read back as ms (gtt::latencyHzForMs; "240 Hz" is still read as Hz).
+    // The value stays Hz; the host's text is the faceplate's ms at the current rate (v0.7), the voice's delay D = L / 2 (1.1: "4.1 ms"
+    // at the default, 48 kHz before a rate is known; 1.0.x showed L, "8.3 ms"; gtt::latencyHostText), and typed text is read back as
+    // ms (gtt::latencyHzForMs; "240 Hz" is still read as Hz).
     // The unit is in the text, so the label is empty.
     auto rate = [sampleRate] { return sampleRate ? sampleRate() : 0.0; };
     auto latencyToText = [rate] (float hz, int) { return juce::String (gtt::latencyHostText (rate(), hz)); };

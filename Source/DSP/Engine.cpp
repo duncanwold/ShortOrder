@@ -15,8 +15,9 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
     windowFadeLen = msToSamples (fs, 20.0);
     settleLen = msToSamples (fs, kSettleMs);
     heldGraceLen = msToSamples (fs, kHeldLiveGraceMs);
+    freshSnapLen = (int64_t) (kFreshSnapMs * 0.001 * fs);
 
-    // History covers the detector window and the L delay for the largest L
+    // History covers the detector window L and the voice delay D (L / 2) for the largest L
     // (the playable zone's minimum window) at max(fs, 96 kHz).
     history.prepare (8 * maxTauFor (fs));
 
@@ -86,6 +87,7 @@ void Engine::reset()
     realNote = -1;
     realRing.fill (0.0f);
     realRingPos = pickGlideCount = 0;
+    freshLatchEntry = -(1 << 30);
     timeline.reset (PitchEntry { 0, false, false, lastVoicedPeriod, 1.0f, 57.0f });
     hopCounter = 0;
     setWindow (windowHz);
@@ -96,7 +98,8 @@ void Engine::setWindow (double hz)
 {
     windowHz = clampWindow (hz);
     detector.setWindow (windowHz);
-    latency = detector.windowLength();
+    windowLen = detector.windowLength();
+    voiceDelay = voiceDelayForWindow (windowLen); // the one place D is set
     pendingTau = detector.tauMax();
     settleRemaining = 0;
 }
@@ -132,7 +135,7 @@ void Engine::runHop (const Settings& s)
     auto det = detector.analyse (history, newest, keep ? std::min (tail.keepConfidence, s.detection.confidence) : s.detection.confidence,
                                  keep ? std::min (dbToGain (tail.keepRmsDb), kVoicedRmsFloor) : kVoicedRmsFloor);
     double midi = det.f0 > 0.0f ? midiFromHz (det.f0) : 0.0;
-    const int64_t entryTime = newest + 1 - latency / 2;
+    const int64_t entryTime = newest + 1 - windowLen / 2; // the window's centre
 
     // The glide needs to know whether the voice will still be open when this entry plays: the
     // voice gate holds for Note Release after the last voiced sample, then fades over 15 ms, so it has
@@ -303,7 +306,14 @@ void Engine::runHop (const Settings& s)
         context.pickFromT = realT;
     }
     const bool wasMidGlide = quantizer.hasNote() && std::abs (quantizer.target() - quantizer.note()) * 100.0 > kGlideToRealMinCents;
-    quantizer.update (det.voiced, midi, s.detection.hysteresisCents, s.retuneMs, (double) hop / fs, context);
+    // 1.1's fresh-start snap (Macro.h): within kFreshSnapMs of a note from silence, a change of its note snaps; a new pick (an onset)
+    // ends the window, so its glide in keeps its Retune.
+    if (context.onset)
+        freshLatchEntry = -(1 << 30);
+    const bool freshSnap = entryTime - freshLatchEntry < freshSnapLen;
+    quantizer.update (det.voiced, midi, s.detection.hysteresisCents, freshSnap ? 0.0f : s.retuneMs, (double) hop / fs, context);
+    if (quantizer.event() == Quantizer::Event::FreshLatch)
+        freshLatchEntry = entryTime;
     // v0.6.2's fix 2 (Macro.h): pitch lost mid-glide with the voice open: T goes on to the last real note, not frozen where it was.
     if (det.voiced || ! context.voiceOpen)
         glideLost = false;
@@ -609,7 +619,7 @@ void Engine::process (const float* in, float* out, int numSamples, const EngineP
     {
         const float x = in[i];
         history.push (x);
-        onsets.push (x, history.newest(), lastVoicedPeriod); // L samples ahead of the voice
+        onsets.push (x, history.newest(), lastVoicedPeriod); // D samples ahead of the voice
         if (++hopCounter >= hop)
         {
             hopCounter = 0;
@@ -618,8 +628,8 @@ void Engine::process (const float* in, float* out, int numSamples, const EngineP
 
         const float fade = stepWindowFade (s.detection.windowHz);
 
-        // The synth runs on the L-delayed timeline (its envelope follows the delayed input).
-        const int64_t t = history.newest() - latency;
+        // The synth runs on the D-delayed timeline (its envelope follows the delayed input).
+        const int64_t t = history.newest() - voiceDelay;
         const float voice = processVoice (t, history.at (t), holdSamples, s) * fade;
         if (tracing && ++traceCounter >= hop)
         {
@@ -645,8 +655,8 @@ void Engine::process (const float* in, float* out, int numSamples, const EngineP
     }
 
     const auto relaxed = std::memory_order_relaxed;
-    readoutState.latencyMs.store ((float) (1000.0 * latency / fs), relaxed);
-    readoutState.windowLength.store (latency, relaxed);
+    readoutState.latencyMs.store ((float) (1000.0 * voiceDelay / fs), relaxed);
+    readoutState.windowLength.store (windowLen, relaxed);
     if (lowestGain < 1.0f)
         readoutState.gainReductionDb.store (std::min (readoutState.gainReductionDb.load (relaxed), 20.0f * std::log10 (lowestGain)), relaxed);
     // Voice state on the delayed (sounding) timeline, at the end of the block.
@@ -657,7 +667,7 @@ void Engine::process (const float* in, float* out, int numSamples, const EngineP
     if (sounding)
     {
         std::array<int, 8> notes {};
-        const int n = chord.tones (timeline.lookup (history.newest() - latency).note, notes);
+        const int n = chord.tones (timeline.lookup (history.newest() - voiceDelay).note, notes);
         packed = 0;
         for (int k = 0; k < 8; ++k)
             packed |= (uint64_t) (k < n ? std::clamp (notes[(size_t) k], 0, 127) : 0xff) << (8 * k);

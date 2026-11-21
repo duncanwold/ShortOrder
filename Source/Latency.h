@@ -55,8 +55,9 @@ inline int nearestLatencyDetent (double hz)
 // The knob's angle for a position (degrees, 0 = up, clockwise): the 270 degree sweep, -135 (k = 0) .. +135 (k = 14).
 inline double latencyKnobAngle (double position) { return -135.0 + position * 270.0 / (kLatencyDetents - 1); }
 
-// The real latency (ms): L / fs at that rate (not the 2040 / f rule of thumb).
-inline double latencyMs (double fs, double hz) { return 1000.0 * latencyFor (fs, hz) / fs; }
+// The real latency (ms): the voice's delay D / fs at that rate (voiceDelayFor, L / 2; 1.1: up to 1.0.x the voice, and so the
+// readout and the host text, were a whole window L behind, twice this).
+inline double latencyMs (double fs, double hz) { return 1000.0 * voiceDelayFor (fs, hz) / fs; }
 // One decimal place, as the readout and the labels show it: "8.3".
 inline std::string oneDecimalText (double ms)
 {
@@ -66,14 +67,14 @@ inline std::string oneDecimalText (double ms)
 }
 inline std::string latencyMsText (double fs, double hz) { return oneDecimalText (latencyMs (fs, hz)); }
 
-// v0.7: the host's text for the latency parameter: the faceplate's ms with the unit, "8.3 ms" at the default (48 kHz). The rate is
+// v0.7: the host's text for the latency parameter: the faceplate's ms with the unit, "4.1 ms" at the default (48 kHz; 1.0.x: "8.3 ms"). The rate is
 // the processor's; before one is known (0), 48 kHz, as the editor does.
 constexpr double kHostTextFallbackRate = 48000.0;
 inline double hostTextRate (double fs) { return fs > 0.0 ? fs : kHostTextFallbackRate; }
 inline std::string latencyHostText (double fs, double hz) { return latencyMsText (hostTextRate (fs), hz) + " ms"; }
 
 // Back from a typed ms value to the parameter's Hz: a value showing as a detent's text (at this rate) is that detent's value exactly,
-// so the text round-trips at every detent; any other is the window 2000 / ms Hz (L = that many ms, to the sample pair), within the range.
+// so the text round-trips at every detent; any other is the window 1000 / ms Hz (D = tauMax = that many ms, to the sample), within the range.
 inline double latencyHzForMs (double fs, double ms)
 {
     fs = hostTextRate (fs);
@@ -81,6 +82,6 @@ inline double latencyHzForMs (double fs, double ms)
     for (int k = 0; k < kLatencyDetents; ++k)
         if (latencyMsText (fs, latencyDetentHz (k)) == typed)
             return latencyDetentHz (k);
-    return ms > 0.0 ? clampWindow (2000.0 / ms) : kWindowMaxHz;
+    return ms > 0.0 ? clampWindow (1000.0 / ms) : kWindowMaxHz;
 }
 } // namespace gtt

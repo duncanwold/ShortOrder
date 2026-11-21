@@ -14,11 +14,11 @@ ShortOrder turns a guitar's pitch into a hard-snapped monophonic synth voice wit
 
 **[Download the latest release](../../releases/latest)**
 
-| Latency setting | Lowest note | Within a phrase | Note from silence |
+| Latency setting | Lowest note | Within a phrase | Note from silence (typical) |
 |---|---|---|---|
-| Slowest | G3 | 10.4 ms | ~15–18 ms |
-| Default | B3 | 8.3 ms | ~12–15 ms |
-| Fastest | A4 | 4.7 ms | ~8.5–10.5 ms |
+| Slowest | G3 | 5.2 ms | ~12 ms |
+| Default | B3 | 4.1 ms | ~9.5 ms |
+| Fastest | A4 | 2.4 ms | ~7.5 ms |
 
 Every playable note gets the same delay at a given setting. Notes below the lowest note are not tracked. To reach them, play higher and use Octave to drop the voice.
 
@@ -45,7 +45,7 @@ A new pick within 100 ms of the last note glides in from that note.
 
 Download from [Releases](../../releases/latest). Everything is signed and notarized.
 
-**Installer:** open `ShortOrder-1.0.1-macOS.pkg`, click **Customize**, and choose the formats you want: AU, VST3, AAX or the standalone app.
+**Installer:** open `ShortOrder-1.1.0-macOS.pkg`, click **Customize**, and choose the formats you want: AU, VST3, AAX or the standalone app.
 
 **Zips:**
 
@@ -68,13 +68,20 @@ Download from [Releases](../../releases/latest). Everything is signed and notari
 - Turn off direct or hardware monitoring on the interface.
 - Use a clean, dry DI signal, with the guitar tuned to A440. ShortOrder snaps to the nearest semitone, so a string more than about 40 cents off can flip to the neighbouring note.
 
+**Uninstall:** move whichever you installed to the Trash (Finder, **Cmd + Shift + G**, paste the path):
+
+- `/Library/Audio/Plug-Ins/Components/ShortOrder.component`
+- `/Library/Audio/Plug-Ins/VST3/ShortOrder.vst3`
+- `/Library/Application Support/Avid/Audio/Plug-Ins/ShortOrder.aaxplugin`
+- `/Applications/ShortOrder.app`
+
 ---
 
 ## How latency works
 
 - **Monophonic on purpose.** A single-note detector needs to see about two cycles of the lowest note it allows. A polyphonic tracker has to separate several notes at once, which takes a longer look; software trackers typically measure 20–40 ms.
-- **The window sets the floor.** The knob sets the detector's window, from 10.4 ms (G3) to 4.7 ms (A4) at 48 kHz. The synth plays on a timeline delayed by exactly one window, so the delay is the same for every note in range. Most guitar synths are pitch-dependent instead: fast on high notes and slow on low ones.
-- **Note starts take longer.** Within a phrase (slides, legato, re-picks while a note sounds), the delay equals the setting. A note from silence starts about 1.5 times the setting after the pick, because the first confident reading of a new note is centred half a window after the pick.
+- **The window sets the floor.** The knob sets the detector's window, from 10.4 ms (G3) to 4.7 ms (A4) at 48 kHz. The synth plays on a timeline delayed by half a window (5.2 ms to 2.4 ms, which is what the knob shows), so the delay is the same for every note in range. Most guitar synths are pitch-dependent instead: fast on high notes and slow on low ones.
+- **Note starts take longer.** Within a phrase (slides, legato, re-picks while a note sounds), the delay equals the setting. A note from silence starts later: about 9.5 ms after the pick at the default (about 12 ms at the slowest setting, about 7.5 ms at the fastest), because the first confident reading of a new note is centred half a window after the pick, and the voice then plays half a window behind. If that first reading lands on a neighbouring note, the voice jumps straight to the right one instead of sliding into it.
 - **What's not counted.** These figures are detection latency only. The interface's round trip is usually about 3–6 ms at a 64-sample buffer.
 
 The figures were measured offline on real DI takes.

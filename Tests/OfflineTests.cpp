@@ -452,7 +452,7 @@ void testDetector()
         if (std::abs (c.fs - kFs) < 1.0)
             writeWav (name, sig, c.fs);
 
-        const int L = latencyFor (c.fs, c.window);
+        const int L = windowLengthFor (c.fs, c.window);
         // Steady-state: skip the onset (first 20 ms for saws; plucks after 0.1 s).
         const double from = ks ? 0.1 : 0.02, to = ks ? 1.5 : seconds;
         int onsetOctaveErrors = 0;
@@ -499,7 +499,7 @@ bool tracksSteadily (bool ks, double hz, double window)
     e.prepare (kFs, 64);
     bool ok = true;
     int n = 0;
-    const int L = latencyFor (kFs, window);
+    const int L = windowLengthFor (kFs, window);
     e.hopListener = [&] (const HopInfo& h) {
         const double ws = (double) (h.time - L / 2) / kFs;
         if (ws < (ks ? 0.1 : 0.02) || (double) (h.time + L / 2) / kFs > 1.1)
@@ -676,7 +676,7 @@ SawTrack sawTrackAt (double fs, double hz, double window)
 {
     const auto hops = collectHops (sawFromTrajectory ([hz] (double) { return hz; }, 0.6, 0.5f, fs), detectorParams (window),
                                    "range_saw" + juce::String (hz, 0) + "_" + juce::String (fs / 1000.0, 1) + "k", fs);
-    const int L = latencyFor (fs, window);
+    const int L = windowLengthFor (fs, window);
     int n = 0;
     SawTrack r;
     r.voiced = true;
@@ -701,7 +701,7 @@ void testWindowMinimum()
     {
         g3Everywhere = g3Everywhere && lowestReliableNote (fs, wMin) == kPlayableLowestNote;
         aboveIsHigher = aboveIsHigher || lowestReliableNote (fs, wMin + 0.01) > kPlayableLowestNote;
-        line << juce::String (fs / 1000.0, 1) << "k: tau " << tauMaxFor (fs, wMin) << ", " << juce::String (1000.0 * latencyFor (fs, wMin) / fs, 2) << " ms; ";
+        line << juce::String (fs / 1000.0, 1) << "k: tau " << tauMaxFor (fs, wMin) << ", " << juce::String (1000.0 * windowLengthFor (fs, wMin) / fs, 2) << " ms; ";
     }
     info (juce::String::formatted ("derived minimum window: %.2f Hz (G3 - 25 c = %.2f Hz)", wMin, hzFromMidi (kPlayableLowestNote - 0.25)));
     info ("  at the minimum -- " + line.trimEnd());
@@ -713,7 +713,7 @@ void testWindowMinimum()
         for (double fs : rates)
             zoneOk = zoneOk && lowestReliableNote (fs, w) >= kPlayableLowestNote;
     check (zoneOk, juce::String::formatted ("Every setting from %.2f to %.2f Hz: lowest reliable at or above G3; latency %.2f .. %.2f ms at 48 kHz", wMin,
-                                            kWindowMaxHz, 1000.0 * latencyFor (kFs, kWindowMaxHz) / kFs, 1000.0 * latencyFor (kFs, wMin) / kFs));
+                                            kWindowMaxHz, 1000.0 * voiceDelayFor (kFs, kWindowMaxHz) / kFs, 1000.0 * voiceDelayFor (kFs, wMin) / kFs));
 
     // The top: six semitones above v0.4's 300 Hz. Latency, lowest reliable note and the detector's
     // range at each rate; the detection range must still reach high e fret 21 (C#6, 1108.73 Hz).
@@ -728,11 +728,11 @@ void testWindowMinimum()
             d.prepare (fs, 64);
             d.setWindow (wTop);
             // Searched lags: tauMin .. tauMax - 1, so f0 from fs / (tauMax - 1) up to fs / tauMin.
-            rangeOk = rangeOk && d.windowLength() == latencyFor (fs, wTop) && d.tauMax() == tauMaxFor (fs, wTop) && fs / d.tauMin() >= c6Sharp
+            rangeOk = rangeOk && d.windowLength() == windowLengthFor (fs, wTop) && d.tauMax() == tauMaxFor (fs, wTop) && fs / d.tauMin() >= c6Sharp
                       && fs / (d.tauMax() - 1) <= hzFromMidi (69 - 0.25);
             if (fs == 44100.0 || fs == 48000.0 || fs == 96000.0)
             {
-                lats << juce::String (fs / 1000.0, 1) << "k " << juce::String (1000.0 * latencyFor (fs, wTop) / fs, 2) << " ms; ";
+                lats << juce::String (fs / 1000.0, 1) << "k " << juce::String (1000.0 * voiceDelayFor (fs, wTop) / fs, 2) << " ms; ";
                 range << juce::String (fs / 1000.0, 1) << "k tau " << d.tauMin() << ".." << d.tauMax() - 1 << " (" << juce::String (fs / (d.tauMax() - 1), 1)
                       << ".." << juce::roundToInt (fs / d.tauMin()) << " Hz); ";
             }
@@ -769,9 +769,9 @@ void testWindowMinimum()
         auto p = defaultParams();
         p.windowHz = 1000.0f;
         runEngine (e, std::vector<float> (6400, 0.0f), p);
-        check (e.currentLatencySamples() == latencyFor (kFs, wTop) && e.hopSize() == 128,
-               juce::String::formatted ("A 1000 Hz request clamps to the top: L = %d samples (%.2f ms); hop %d (every input sample is in at least one window: L >= hop)",
-                                        e.currentLatencySamples(), 1000.0 * e.currentLatencySamples() / kFs, e.hopSize()));
+        check (e.windowLength() == windowLengthFor (kFs, wTop) && e.currentLatencySamples() == voiceDelayFor (kFs, wTop) && e.hopSize() == 128,
+               juce::String::formatted ("A 1000 Hz request clamps to the top: L = %d samples, the voice's delay %d (%.2f ms); hop %d (every input sample is in at least one window: L >= hop)",
+                                        e.windowLength(), e.currentLatencySamples(), 1000.0 * e.currentLatencySamples() / kFs, e.hopSize()));
     }
 
     // As played, at the minimum: G3 25 c flat tracks (saw and pluck); F#3 in tune doesn't.
@@ -788,8 +788,8 @@ void testWindowMinimum()
     p.windowHz = 55.0f;
     std::vector<float> silence (6400, 0.0f);
     runEngine (e, silence, p);
-    check (e.currentLatencySamples() == latencyFor (kFs, wMin),
-           juce::String::formatted ("A 55 Hz request clamps to the minimum: L = %d samples (%.2f ms)", e.currentLatencySamples(), 1000.0 * e.currentLatencySamples() / kFs));
+    check (e.windowLength() == windowLengthFor (kFs, wMin) && e.currentLatencySamples() == voiceDelayFor (kFs, wMin),
+           juce::String::formatted ("A 55 Hz request clamps to the minimum: L = %d samples, the voice's delay %d (%.2f ms)", e.windowLength(), e.currentLatencySamples(), 1000.0 * e.currentLatencySamples() / kFs));
     info (juce::String::formatted ("preallocated for the longest window at 96 kHz: tauMax %d (v0.3, 55 Hz: %d), engine history %d samples (v0.3: %d)", maxTauFor (kFs),
                                    (int) std::lround (96000.0 / 55.0), nextPow2 (8 * maxTauFor (kFs)), nextPow2 (8 * (int) std::lround (96000.0 / 55.0))));
 }
@@ -827,7 +827,7 @@ void testHysteresis()
             auto p = detectorParams (c.window);
             p.hysteresisCents = hyst;
             auto hops = collectHops (sig, p, "hysteresis_park_48c_" + tag + "_h" + juce::String (hyst, 0));
-            const int L = latencyFor (kFs, c.window);
+            const int L = windowLengthFor (kFs, c.window);
             int changes = 0, prevN = -1, parkedN = -1;
             for (auto& h : hops)
             {
@@ -1000,7 +1000,7 @@ PitchStats measureAgainst (const std::vector<float>& sig, double expectedHz, dou
 // ---------------------------------------------------------------------------
 void testSynth()
 {
-    const int L = latencyFor (kFs, kRefWindowHz);
+    const int L = voiceDelayFor (kFs, kRefWindowHz); // the voice's delay: the output plays input time t at t + L
     const char* waveNames[4] = { "saw", "square", "triangle", "sine" };
 
     // Snapping: an input 30 cents sharp of A4 comes out on A4.
@@ -1095,7 +1095,7 @@ void testSynth()
                                     + juce::String (bound, 5));
     }
 
-    // Timeline: output starts L after the input (runs on the delayed timeline).
+    // Timeline: output starts D after the input (runs on the delayed timeline).
     {
         std::vector<float> in ((size_t) (0.5 * kFs), 0.0f);
         auto tone = steadySaw (440.0, 1.0, 0.4f);
@@ -1112,8 +1112,8 @@ void testSynth()
                 break;
             }
         const double lateMs = ((double) onset - 0.5 * kFs) / kFs * 1000.0;
-        info ("synth onset " + juce::String (lateMs, 2) + " ms after the input onset (L = " + juce::String (1000.0 * L / kFs, 2) + " ms)");
-        check (lateMs >= 1000.0 * L / kFs - 0.1, "Synth output is not earlier than the L-delayed input");
+        info ("synth onset " + juce::String (lateMs, 2) + " ms after the input onset (D = " + juce::String (1000.0 * L / kFs, 2) + " ms)");
+        check (lateMs >= 1000.0 * L / kFs - 0.1, "Synth output is not earlier than the D-delayed input");
     }
 }
 
@@ -1199,7 +1199,7 @@ void testWindowSweep()
         for (int k = 0; k < 6; ++k)
         {
             const int got = r.lat[(size_t) ((0.5 * k + 0.45) * kFs / 64)];
-            latOk = latOk && got == latencyFor (kFs, steps[k]);
+            latOk = latOk && got == voiceDelayFor (kFs, steps[k]);
             lats << juce::String (1000.0 * got / kFs, 1) << (k < 5 ? " -> " : " ms");
         }
         float ratio = 0.0f;
@@ -1232,7 +1232,7 @@ void testWindowSweep()
         float ratio = 0.0f;
         const bool noClicks = swapClicks (r, ratio);
         const double swapAt = (double) (swapBlock * 64) / kFs;
-        check (r.swaps == 1 && r.lat.back() == latencyFor (kFs, derivedWindowMinHz()),
+        check (r.swaps == 1 && r.lat.back() == voiceDelayFor (kFs, derivedWindowMinHz()),
                "Continuous drag coalesces into " + juce::String (r.swaps) + " swap, " + juce::String (1000.0 * (swapAt - 3.0), 0)
                    + " ms after the knob stops (100 ms settle + 20 ms fade-out)");
         check (noClicks, "Continuous drag: no click at the swap (max step " + juce::String (ratio, 2) + "x the steady tone's)");
@@ -1550,7 +1550,7 @@ HoldRun runHoldWith (const std::vector<float>& in, double gapStart, double gapEn
         (hold > 0.0f ? r.refHold : r.refMute) = runEngine (ref, in, q);
     }
 
-    const int L = latencyFor (kFs, d.windowHz);
+    const int L = voiceDelayFor (kFs, d.windowHz); // the voice's delay: pitch lost at input time t is lost at the output at t + L
     r.lost = (size_t) (lostAt + L);
     r.back = (size_t) (backAt + L);
     r.holdLen = (size_t) std::lround (d.holdMs * 0.001 * kFs);
@@ -1854,7 +1854,7 @@ void testDirectWindowHold()
         Engine e;
         e.prepare (kFs, 64);
         runEngine (e, std::vector<float> (6400, 0.0f), p);
-        latOk = latOk && e.currentLatencySamples() == latencyFor (kFs, window);
+        latOk = latOk && e.currentLatencySamples() == voiceDelayFor (kFs, window) && e.windowLength() == windowLengthFor (kFs, window);
         lats << juce::String (window, 2) << " Hz: " << juce::String (1000.0 * e.currentLatencySamples() / kFs, 2) << " ms  ";
     }
     check (latOk, "Engine latency follows Latency / Minimum Pitch: " + lats.trimEnd());
@@ -2304,7 +2304,7 @@ void testNoteReleaseTail()
 struct SustainRun
 {
     std::vector<float> out;
-    double lostAt = -1.0;   // output time (s) the delayed timeline loses pitch for good (last voiced hop + L)
+    double lostAt = -1.0;   // output time (s) the delayed timeline loses pitch for good (last voiced hop + D, the voice's delay)
     int unvoicedIn[2] = {}; // unvoiced hops inside the window given to renderSustain
 };
 
@@ -2339,7 +2339,7 @@ double levelDb (const std::vector<float>& x, double t, double w = 0.02)
 
 void testSustain()
 {
-    const double e4 = 329.63, lat = (double) latencyFor (kFs, defaultWindowHz()) / kFs;
+    const double e4 = 329.63, lat = (double) voiceDelayFor (kFs, defaultWindowHz()) / kFs;
 
     // Monotonic effect, the dB law, and flat at 100%: a plucked E4 ringing out (T60 6 s).
     {
@@ -2548,7 +2548,7 @@ void testEnvelopeBox()
     }
 
     // The engine at defaults on that pluck: its output level follows the guitar's.
-    const double lat = (double) latencyFor (kFs, defaultWindowHz()) / kFs;
+    const double lat = (double) voiceDelayFor (kFs, defaultWindowHz()) / kFs;
     {
         Engine e;
         e.prepare (kFs, 64);
@@ -3266,7 +3266,7 @@ void testGlide()
     // and in phase. Level against the settled two-note chord, 5 ms RMS.
     {
         const auto in = joined ({ legatoSaws ({ { 60, 0.4 } }), silence (0.03), legatoSaws ({ { 64, 0.6 } }) });
-        const double lat = (double) latencyFor (kFs, defaultWindowHz()) / kFs, change = 0.43 + lat;
+        const double lat = (double) voiceDelayFor (kFs, defaultWindowHz()) / kFs, change = 0.43 + lat;
         const auto out = renderAtDefaults (in, [] (EngineParams& q) {
             q.chordMode = ChordMode::Memory;
             q.wave = Wave::Sine;
@@ -3373,7 +3373,7 @@ std::vector<float> hammerOn (double stepDb, double seconds = 2.0)
 // are Sustain's alone and the v0.5 comparisons hold.)
 void testInheritance()
 {
-    const double lat = (double) latencyFor (kFs, defaultWindowHz()) / kFs;
+    const double lat = (double) voiceDelayFor (kFs, defaultWindowHz()) / kFs;
     auto render = [] (const std::vector<float>& in, float sustain) {
         return renderWith (in, [=] (EngineParams& p) {
             p.sustainPercent = sustain;
@@ -3476,7 +3476,7 @@ void testInheritance()
 // here) is what v05-defaults compares with v0.5; the other settings of the old control aren't tested.
 void testDynamics()
 {
-    const double e4 = hzFromMidi (64), lat = (double) latencyFor (kFs, defaultWindowHz()) / kFs;
+    const double e4 = hzFromMidi (64), lat = (double) voiceDelayFor (kFs, defaultWindowHz()) / kFs;
     const float fixed = 100.0f * kDynamics;
     auto pluck = [e4] (float amp, uint32_t seed = 91) { return ksPluck ([e4] (double) { return e4; }, 1.6, amp, ksLossFor (e4, 3.0), seed); };
     auto render = [] (const std::vector<float>& in, float dynamics, float sustain = 0.0f, Wave wave = Wave::Saw) {
@@ -4289,7 +4289,7 @@ void testFolded()
         x.insert (x.begin(), (size_t) (0.05 * kFs), 0.0f); // 50 ms of silence first
         return x;
     };
-    const size_t start = (size_t) (0.05 * kFs) + (size_t) latencyFor (kFs, defaultWindowHz());
+    const size_t start = (size_t) (0.05 * kFs) + (size_t) voiceDelayFor (kFs, defaultWindowHz());
     auto folded = [] (int chord = 0) {
         EngineParams p = chordChoiceParams (chord);
         p.wave = Wave::Folded;
@@ -4565,7 +4565,7 @@ void testFolded()
             pf.windowHz = (float) derivedWindowMinHz();
             auto ps = pf;
             ps.wave = Wave::Saw;
-            const size_t from = (size_t) (0.05 * kFs) + (size_t) latencyFor (kFs, derivedWindowMinHz());
+            const size_t from = (size_t) (0.05 * kFs) + (size_t) voiceDelayFor (kFs, derivedWindowMinHz());
             const double saw = lufs (renderFolded (in, ps).out, from), fold = lufs (renderFolded (in, pf).out, from);
             const double d = fold - saw;
             meanFolded[amp < 0.7f ? 0 : 1] += fold / 22.0;
@@ -5469,7 +5469,7 @@ void testDynamicsFix()
                 e.setSputterFix (false); // v0.5.4's Dynamics fix measured alone
                 return runEngine (e, in, p);
             };
-            const int L = latencyFor (kFs, defaultWindowHz());
+            const int L = voiceDelayFor (kFs, defaultWindowHz()); // the voice's delay
             const size_t from = soft.size() + (size_t) L + (size_t) (0.03 * kFs), to = soft.size() + (size_t) L + (size_t) (0.2 * kFs);
             const auto bypassed = render (100.0f, false);
             const double fixedDb = toDb (rms (render (50.0f, false), from, to) / rms (bypassed, from, to));
@@ -8583,6 +8583,7 @@ void probeSputterFull()
 #include "Grid.inc"
 #include "RC1QA.inc"
 #include "RC2.inc"
+#include "V11.inc"
 
 // v0.5.10: the blip fixes on the real takes (docs/reports/BLIPS-REPORT.md). The engine starts with blipFix(); blips-dry has no blip with the
 // fall lock; on the legato takes no note change follows more than 3 ms later than v0.5.9 but one quiet trill step (24 ms in
@@ -8652,7 +8653,9 @@ void testBlips()
         if (t.name == "trills")
             check (missedB == 0, text);
         else if (t.name == "pull-offs")
-            check (offB <= 415.0, text + " (the report: 414 ms)");
+            // 1.1: the voice at D = L / 2 measures 419 ms here (1.0.x: 414, the report's; v0.5.9's engine moves the same way, 807 -> 811 ms),
+            // as the 1.1 measurements found; the bound moved from 415 to 420 ms.
+            check (offB <= 420.0, text + " (the report: 414 ms; 1.1: 419 ms)");
         else
             info (text);
         if (t.name == "hammer-ons")
@@ -8771,7 +8774,7 @@ void testTrace()
             if (outAt < 0 && f.outMidi > 68.5f)
                 outAt = f.time;
         }
-        check (inAt >= 0 && inAt == outAt, juce::String::formatted ("E4 -> A4 at 0.6 s (Retune Fast): the input line reaches A4 at %.4f s, the output at %.4f s on the voice's timeline (the same frame: the input is drawn L later than it was played, %.2f ms)",
+        check (inAt >= 0 && inAt == outAt, juce::String::formatted ("E4 -> A4 at 0.6 s (Retune Fast): the input line reaches A4 at %.4f s, the output at %.4f s on the voice's timeline (the same frame: the input is drawn D later than it was played, %.2f ms)",
                                                                   (double) inAt / kFs, (double) outAt / kFs, 1000.0 * e.currentLatencySamples() / kFs));
     }
 }
@@ -8895,6 +8898,11 @@ std::vector<TestCase> allTests()
         { "probe-rc2-hops", rc2::probeHops, true },
         { "probe-rc2-click", rc2::probeClickAt, true },
         { "probe-rc2-freeze", rc2::probeFreezeAt, true },
+        { "probe-v11-sine", v11::probeSine, true },
+        { "probe-v11-takes", v11::probeTakes, true },
+        { "probe-v11-knob", v11::probeKnob, true },
+        { "probe-v11-clips", v11::probeClips, true },
+        { "probe-v11-snaps", v11::probeSnaps, true },
         { "sputter", testSputter },
         { "slides", testSlides },
         { "edge-rule", testEdgeRule },
